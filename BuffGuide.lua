@@ -190,10 +190,21 @@ function BuffGuide.CreateUIFrame()
 	BuffGuide.UIFrame:SetWidth(_G.BuffGuidePrefs.frameW);
 	BuffGuide.UIFrame:SetHeight(_G.BuffGuidePrefs.frameH);
 
-	-- make it black
-	BuffGuide.UIFrame.texture = BuffGuide.UIFrame:CreateTexture();
-	BuffGuide.UIFrame.texture:SetAllPoints(BuffGuide.UIFrame);
-	BuffGuide.UIFrame.texture:SetTexture(0, 0, 0);
+	-- frame
+	BuffGuide.UIFrame:SetBackdrop({
+		bgFile		= "Interface/TargetingFrame/UI-StatusBar", --""Interface/Tooltips/UI-Tooltip-Background",
+		edgeFile	= "Interface/Tooltips/UI-Tooltip-Border",
+		tile		= false,
+		tileSize	= 16,
+		edgeSize	= 8,
+		insets		= {
+			left	= 3,
+			right	= 3,
+			top	= 3,
+			bottom	= 3,
+		},
+	});
+	BuffGuide.UIFrame:SetBackdropBorderColor(1,1,1);
 
 	-- position it
 	BuffGuide.UIFrame:SetPoint(_G.BuffGuidePrefs.frameRef, _G.BuffGuidePrefs.frameX, _G.BuffGuidePrefs.frameY);
@@ -274,9 +285,9 @@ function BuffGuide.UpdateFrame()
 	BuffGuide.Label:SetText(BuffGuide.status.buff_num.."/8");
 
 	if (is_ok) then
-		BuffGuide.UIFrame.texture:SetTexture(0, 1, 0, 0.5);
+		BuffGuide.UIFrame:SetBackdropColor(0, 1, 0, 0.5);
 	else
-		BuffGuide.UIFrame.texture:SetTexture(1, 0, 0, 0.5);
+		BuffGuide.UIFrame:SetBackdropColor(1, 0, 0, 0.5);
 	end
 end
 
