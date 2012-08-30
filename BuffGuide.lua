@@ -108,6 +108,8 @@ BuffGuide.buffs = {
 	},
 };
 
+BuffGuide.last_check = 0;
+BuffGuide.time_between_checks = 5; -- only update every 5 seconds
 
 function BuffGuide.OnReady()
 
@@ -142,6 +144,11 @@ function BuffGuide.OnUpdate()
 		return;
 	end
 
+	if (BuffGuide.last_check + BuffGuide.time_between_checks < GetTime()) then
+		BuffGuide.last_check = GetTime();
+		BuffGuide.PeriodicCheck();
+	end
+
 	BuffGuide.UpdateFrame();
 end
 
@@ -164,6 +171,18 @@ function BuffGuide.OnEvent(frame, event, ...)
 	if (event == 'PLAYER_LOGOUT') then
 		BuffGuide.OnSaving();
 		return;
+	end
+
+	-- if our buff status changes and we're *not* in combat, update
+	-- immediately (so buffing before pull is real-time)
+
+	if (event == 'UNIT_AURA') then
+		local unitId = ...;
+		if (unitId == UnitGUID("player")) then
+			if (not UnitAffectingCombat("player")) then
+				BuffGuide.PeriodicCheck();
+			end
+		end
 	end
 end
 
@@ -241,6 +260,10 @@ function BuffGuide.UpdateFrame()
 	BuffGuide.Label:SetText(string.format("%d", GetTime()));
 end
 
+function BuffGuide.PeriodicCheck()
+
+end
+
 
 BuffGuide.EventFrame = CreateFrame("Frame");
 BuffGuide.EventFrame:Show();
@@ -249,3 +272,4 @@ BuffGuide.EventFrame:SetScript("OnUpdate", BuffGuide.OnUpdate);
 BuffGuide.EventFrame:RegisterEvent("ADDON_LOADED");
 BuffGuide.EventFrame:RegisterEvent("PLAYER_LOGIN");
 BuffGuide.EventFrame:RegisterEvent("PLAYER_LOGOUT");
+BuffGuide.EventFrame:RegisterEvent("UNIT_AURA");
