@@ -13,6 +13,101 @@ BuffGuide.default_options = {
 	frameH = 200,
 };
 
+BuffGuide.buffs = {
+	stats = {
+		name = "Stats",
+		description = "Strength, Agility, and Intellect increased by 5%",
+		classes = "Druid, Monk, Paladin, BM Hunter (Shale Spider)",
+		buffs = {
+			"Mark of the Wild",
+			"Legacy of the Emperor",
+			"Blessing of Kings",
+			"Embrace of the Shale Spider",
+		},
+	},
+	stamina = {
+		name = "Stamina",
+		description = "+10% Stamina",
+		classes = "Priest, Warlock, Warrior, BM Hunter (Silithid)",
+		buffs = {
+			"Power Word: Fortitude",
+			"Blood Pact",
+			"Commanding Shout",
+			"Qiraji Fortitude",
+		},
+	},
+	attack_power = {
+		name = "Attack Power",
+		description = "10% Melee and Ranged Attack Power",
+		classes = "DK, Hunter, Warrior",
+		buffs = {
+			"Horn of Winter",
+			"Trueshot Aura",
+			"Battle Shout",
+		},
+	},
+	spell_power = {
+		name = "Spell Power",
+		description = "+10% spell power",
+		classes = "Mage, Shaman, Warlock, BM Hunter (Waterstrider)",
+		buffs = {
+			"Arcane Brilliance",
+			"Dalaran Brilliance",
+			"Burning Wrath",
+			"Dark Intent",
+			"Still Water",
+		},
+	},
+	haste = {
+		name = "Haste",
+		description = "+10% Melee and Ranged Haste",
+		classes = "Frost DK, Unholy DK, Rogue, Enhancement Shaman, Hunter (Hyena, Serpent)",
+		buffs = {
+			"Unholy Aura",
+			"Swiftblade's Cunning",
+			"Unleashed Rage",
+			"Cackling Howl",
+			"Serpent's Swiftness",
+		},
+	},
+	spell_haste = {
+		name = "Spell Haste",
+		description = "+5% Spell Haste",
+		classes = "Balance Druid, Shadow Priest, Elemental Shaman",
+		buffs = {
+			"Moonkin Aura",
+			"Shadowform",
+			"Elemental Oath",
+		},
+	},
+	crit = {
+		name = "Critical Strike",
+		description = "+5% Ranged, Melee, and Spell Critical Chance",
+		classes = "Guardian Druid, Feral Druid, Mage, Hunter (Hydra, Wolf, Devilsaur, Quilen, Water Strider)",
+		buffs = {
+			"Leader of the Pack",
+			"Arcane Brilliance",
+			"Dalaran Brilliance",
+			"Bellowing Roar",
+			"Furious Howl",
+			"Terrifying Roar",
+			"Fearless Roar",
+			"Still Water",
+		},
+	},
+	mastery = {
+		name = "Mastery",
+		description = "+5 Mastery",
+		classes = "Paladin, Shaman, Hunter (Cat, Spirit Beast)",
+		buffs = {
+			"Blessing of Might",
+			"Grace of Air",
+			"Roar of Courage",
+			"Spirit Beast Blessing",
+		},
+	},
+};
+
 
 function BuffGuide.OnReady()
 
