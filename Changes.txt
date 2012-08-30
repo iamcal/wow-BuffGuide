@@ -1,0 +1,5 @@
+1.0
+ * first release
+
+1.1
+ * Added spacing between buff name and time remaining

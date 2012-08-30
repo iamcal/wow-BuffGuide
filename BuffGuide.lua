@@ -344,7 +344,7 @@ function BuffGuide.PopulateTooltip()
 			local has_time = true;
 
 			if (BuffGuide.buffs[k].remain > 0) then
-				status = status.."("..BuffGuide.FormatRemaining(BuffGuide.buffs[k].remain)..")";
+				status = status.." ("..BuffGuide.FormatRemaining(BuffGuide.buffs[k].remain)..")";
 				if (BuffGuide.buffs[k].remain < 5 * 60) then
 					has_time = false;
 				end
