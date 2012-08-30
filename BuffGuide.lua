@@ -9,8 +9,8 @@ BuffGuide.default_options = {
 	hide = false,
 
 	-- sizing
-	frameW = 200,
-	frameH = 200,
+	frameW = 70,
+	frameH = 50,
 };
 
 BuffGuide.buffs = {
@@ -256,8 +256,28 @@ end
 
 function BuffGuide.UpdateFrame()
 
+	local is_ok = true;
+
+	if (not BuffGuide.status.has_food) then
+		is_ok = false;
+	end
+
+	if (not BuffGuide.status.has_flask) then
+		is_ok = false;
+	end
+
+	if (BuffGuide.status.buff_num < 8) then
+		is_ok = false;
+	end
+
 	-- update the main frame state here
-	BuffGuide.Label:SetText(string.format("%d", GetTime()));
+	BuffGuide.Label:SetText(BuffGuide.status.buff_num.."/8");
+
+	if (is_ok) then
+		BuffGuide.UIFrame.texture:SetTexture(0, 1, 0, 0.5);
+	else
+		BuffGuide.UIFrame.texture:SetTexture(1, 0, 0, 0.5);
+	end
 end
 
 function BuffGuide.ShowTooltip()
@@ -304,9 +324,14 @@ function BuffGuide.PopulateTooltip()
 		GameTooltip:AddDoubleLine("Flask", "Missing", 1,0.4,0.4, 1,0.4,0.4);
 	end
 
+
+	-- only show raid buff status if we're in a group
+
+	local num = GetNumGroupMembers()
+	if (num == 0) then return; end;
+
 	GameTooltip:AddLine(" ");
 	
-
 
 	-- raid buff status
 
