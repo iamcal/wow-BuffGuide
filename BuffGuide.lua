@@ -313,13 +313,13 @@ function BuffGuide.PopulateTooltip()
 	end
 
 	if (BuffGuide.status.has_food) then
-		GameTooltip:AddDoubleLine("Food Buff", "Yes", 0.4,1,0.4, 0.4,1,0.4);
+		GameTooltip:AddDoubleLine("Food Buff", "Yes ("..BuffGuide.FormatRemaining(BuffGuide.status.food_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
 	else
 		GameTooltip:AddDoubleLine("Food Buff", "Missing", 1,0.4,0.4, 1,0.4,0.4);
 	end
 
 	if (BuffGuide.status.has_flask) then
-		GameTooltip:AddDoubleLine("Flask", "Yes", 0.4,1,0.4, 0.4,1,0.4);
+		GameTooltip:AddDoubleLine("Flask", "Yes ("..BuffGuide.FormatRemaining(BuffGuide.status.flask_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
 	else
 		GameTooltip:AddDoubleLine("Flask", "Missing", 1,0.4,0.4, 1,0.4,0.4);
 	end
@@ -340,7 +340,22 @@ function BuffGuide.PopulateTooltip()
 
 		if (BuffGuide.buffs[k].got) then
 
-			GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, BuffGuide.buffs[k].got_buff, 0.4,1,0.4, 0.4,1,0.4);
+			local status = BuffGuide.buffs[k].got_buff;
+			local has_time = true;
+
+			if (BuffGuide.buffs[k].remain > 0) then
+				status = status.."("..BuffGuide.FormatRemaining(BuffGuide.buffs[k].remain)..")";
+				if (BuffGuide.buffs[k].remain < 5 * 60) then
+					has_time = false;
+				end
+			end
+
+			if (has_time) then
+				GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, status, 0.4,1,0.4, 0.4,1,0.4);
+			else
+				GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, status, 0.4,1,0.4, 1,1,0.4);
+			end
+
 		else
 			GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, "Missing", 1,0.4,0.4, 1,0.4,0.4);
 
@@ -387,7 +402,8 @@ function BuffGuide.PeriodicCheck()
 
 			if (buff_map[buff]) then
 				BuffGuide.buffs[k].got = true;
-				BuffGuide.buffs[k].got_buff = buff..string.format(" : %d", buff_map[buff]);
+				BuffGuide.buffs[k].got_buff = buff;
+				BuffGuide.buffs[k].remain = buff_map[buff];
 			end
 		end
 
@@ -402,11 +418,39 @@ function BuffGuide.PeriodicCheck()
 
 	if (buff_map["Well Fed"]) then
 		BuffGuide.status.has_food = true;
+		BuffGuide.status.food_remain = buff_map["Well Fed"];
+	end
+
+	local k,v;
+	for k, v in pairs(buff_map) do
+		if (string.find(k, "Flask of")) then
+			BuffGuide.status.has_flask = true;
+			BuffGuide.status.flask_remain = v;
+		end
 	end
 
 	if (BuffGuide.showing_tooltip) then
 		BuffGuide.ShowTooltip();
 	end
+end
+
+function BuffGuide.FormatRemaining(t)
+
+	if (t < 90) then
+		return t.."s";
+	end
+
+	if (t > 60 * 90) then
+
+		local h = math.floor(t / (60 * 60));
+		t = t - (h * 60 * 60);
+		local m =  math.floor(t / (60));
+
+		return h.."h "..m.."m";
+	end
+
+	local m =  math.floor(t / (60));
+	return m.."m";
 end
 
 
