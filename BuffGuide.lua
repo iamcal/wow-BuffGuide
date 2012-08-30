@@ -17,99 +17,94 @@ BuffGuide.buffs = {
 	stats = {
 		name = "Stats",
 		description = "Strength, Agility, and Intellect increased by 5%",
-		classes = "Druid, Monk, Paladin, BM Hunter (Shale Spider)",
 		buffs = {
-			"Mark of the Wild",
-			"Legacy of the Emperor",
-			"Blessing of Kings",
-			"Embrace of the Shale Spider",
+			{"Mark of the Wild",		"Druid"},
+			{"Legacy of the Emperor",	"Monk"},
+			{"Blessing of Kings",		"Paladin"},
+			{"Embrace of the Shale Spider",	"BM Hunter (Shale Spider)"},
 		},
 	},
 	stamina = {
 		name = "Stamina",
 		description = "+10% Stamina",
-		classes = "Priest, Warlock, Warrior, BM Hunter (Silithid)",
 		buffs = {
-			"Power Word: Fortitude",
-			"Blood Pact",
-			"Commanding Shout",
-			"Qiraji Fortitude",
+			{"Power Word: Fortitude",	"Priest"},
+			{"Blood Pact",			"Warlock (Imp)"},
+			{"Commanding Shout",		"Warrior"},
+			{"Qiraji Fortitude",		"BM Hunter (Silithid)"},
 		},
 	},
 	attack_power = {
 		name = "Attack Power",
 		description = "10% Melee and Ranged Attack Power",
-		classes = "DK, Hunter, Warrior",
 		buffs = {
-			"Horn of Winter",
-			"Trueshot Aura",
-			"Battle Shout",
+			{"Horn of Winter",	"DK"},
+			{"Trueshot Aura",	"Hunter"},
+			{"Battle Shout",	"Warrior"},
 		},
 	},
 	spell_power = {
 		name = "Spell Power",
 		description = "+10% spell power",
-		classes = "Mage, Shaman, Warlock, BM Hunter (Waterstrider)",
 		buffs = {
-			"Arcane Brilliance",
-			"Dalaran Brilliance",
-			"Burning Wrath",
-			"Dark Intent",
-			"Still Water",
+			{"Arcane Brilliance",	"Mage"},
+			{"Dalaran Brilliance",	"Mage"},
+			{"Burning Wrath",	"Shaman"},
+			{"Dark Intent",		"Warlock"},
+			{"Still Water",		"BM Hunter (Waterstrider)"},
 		},
 	},
 	haste = {
 		name = "Haste",
 		description = "+10% Melee and Ranged Haste",
-		classes = "Frost DK, Unholy DK, Rogue, Enhancement Shaman, Hunter (Hyena, Serpent)",
 		buffs = {
-			"Unholy Aura",
-			"Swiftblade's Cunning",
-			"Unleashed Rage",
-			"Cackling Howl",
-			"Serpent's Swiftness",
+			{"Unholy Aura",			"Frost/Unholy DK"},
+			{"Swiftblade's Cunning",	"Rogue"},
+			{"Unleashed Rage",		"Enhancement Shaman"},
+			{"Cackling Howl",		"Hunter (Hyena)"},
+			{"Serpent's Swiftness",		"Hunter (Serpent)"},
 		},
 	},
 	spell_haste = {
 		name = "Spell Haste",
 		description = "+5% Spell Haste",
-		classes = "Balance Druid, Shadow Priest, Elemental Shaman",
 		buffs = {
-			"Moonkin Aura",
-			"Shadowform",
-			"Elemental Oath",
+			{"Moonkin Aura",	"Balance Druid"},
+			{"Shadowform",		"Shadow Priest"},
+			{"Elemental Oath",	"Elemental Shaman"},
 		},
 	},
 	crit = {
 		name = "Critical Strike",
 		description = "+5% Ranged, Melee, and Spell Critical Chance",
-		classes = "Guardian Druid, Feral Druid, Mage, Hunter (Hydra, Wolf, Devilsaur, Quilen, Water Strider)",
+		classes = ", Feral Druid, Mage, Hunter (Hydra, Wolf, Devilsaur, Quilen, Water Strider)",
 		buffs = {
-			"Leader of the Pack",
-			"Arcane Brilliance",
-			"Dalaran Brilliance",
-			"Bellowing Roar",
-			"Furious Howl",
-			"Terrifying Roar",
-			"Fearless Roar",
-			"Still Water",
+			{"Leader of the Pack",	"Guardian/Feral Druid"},
+			{"Arcane Brilliance",	"Mage"},
+			{"Dalaran Brilliance",	"Mage"},
+			{"Bellowing Roar",	"Hunter (Hydra)"},
+			{"Furious Howl",	"Hunter (Wolf)"},
+			{"Terrifying Roar",	"Hunter (Devilsaur)"},
+			{"Fearless Roar",	"Hunter (Quilen)"},
+			{"Still Water",		"Hunter (Water Strider)"},
 		},
 	},
 	mastery = {
 		name = "Mastery",
 		description = "+5 Mastery",
-		classes = "Paladin, Shaman, Hunter (Cat, Spirit Beast)",
 		buffs = {
-			"Blessing of Might",
-			"Grace of Air",
-			"Roar of Courage",
-			"Spirit Beast Blessing",
+			{"Blessing of Might",		"Paladin"},
+			{"Grace of Air",		"Shaman"},
+			{"Roar of Courage",		"Hunter (Cat)"},
+			{"Spirit Beast Blessing",	"Hunter (Spirit Beast)"},
 		},
 	},
 };
 
+BuffGuide.status = {};
 BuffGuide.last_check = 0;
 BuffGuide.time_between_checks = 5; -- only update every 5 seconds
+BuffGuide.showing_tooltip = false;
 
 function BuffGuide.OnReady()
 
@@ -122,6 +117,7 @@ function BuffGuide.OnReady()
 		end
 	end
 
+	BuffGuide.PeriodicCheck();
 	BuffGuide.CreateUIFrame();
 end
 
@@ -178,8 +174,8 @@ function BuffGuide.OnEvent(frame, event, ...)
 
 	if (event == 'UNIT_AURA') then
 		local unitId = ...;
-		if (unitId == UnitGUID("player")) then
-			if (not UnitAffectingCombat("player")) then
+		if (unitId == "player") then
+			if (UnitAffectingCombat("player") == nil) then
 				BuffGuide.PeriodicCheck();
 			end
 		end
@@ -218,6 +214,10 @@ function BuffGuide.CreateUIFrame()
 	BuffGuide.Cover:SetScript("OnDragStart", BuffGuide.OnDragStart);
 	BuffGuide.Cover:SetScript("OnDragStop", BuffGuide.OnDragStop);
 	BuffGuide.Cover:SetScript("OnClick", BuffGuide.OnClick);
+
+	BuffGuide.Cover:SetHitRectInsets(0, 0, 0, 0)
+	BuffGuide.Cover:SetScript("OnEnter", BuffGuide.ShowTooltip);
+	BuffGuide.Cover:SetScript("OnLeave", BuffGuide.HideTooltip);
 
 	-- add a main label - just so we can show something
 	BuffGuide.Label = BuffGuide.Cover:CreateFontString(nil, "OVERLAY");
@@ -260,8 +260,128 @@ function BuffGuide.UpdateFrame()
 	BuffGuide.Label:SetText(string.format("%d", GetTime()));
 end
 
+function BuffGuide.ShowTooltip()
+
+	BuffGuide.showing_tooltip = true;
+
+	GameTooltip:SetOwner(BuffGuide.UIFrame, "ANCHOR_BOTTOM");
+
+	BuffGuide.PopulateTooltip();
+
+	GameTooltip:ClearAllPoints()
+	GameTooltip:SetPoint("TOPLEFT", BuffGuide.UIFrame, "BOTTOMLEFT"); 
+
+	GameTooltip:Show()
+end
+
+function BuffGuide.HideTooltip()
+
+	BuffGuide.showing_tooltip = false;
+	GameTooltip:Hide();
+end
+
+function BuffGuide.PopulateTooltip()
+
+	GameTooltip:ClearLines();
+
+	if (BuffGuide.status.buff_num == 8) then
+		GameTooltip:AddDoubleLine("Raid Buffs", BuffGuide.status.buff_num.."/8", 0.4,1,0.4, 0.4,1,0.4);
+	elseif (BuffGuide.status.buff_num >= 6) then
+		GameTooltip:AddDoubleLine("Raid Buffs", BuffGuide.status.buff_num.."/8", 1,1,0.4, 1,1,0.4);
+	else
+		GameTooltip:AddDoubleLine("Raid Buffs", BuffGuide.status.buff_num.."/8", 1,0.4,0.4, 1,0.4,0.4);
+	end
+
+	if (BuffGuide.status.has_food) then
+		GameTooltip:AddDoubleLine("Food Buff", "Yes", 0.4,1,0.4, 0.4,1,0.4);
+	else
+		GameTooltip:AddDoubleLine("Food Buff", "Missing", 1,0.4,0.4, 1,0.4,0.4);
+	end
+
+	if (BuffGuide.status.has_flask) then
+		GameTooltip:AddDoubleLine("Flask", "Yes", 0.4,1,0.4, 0.4,1,0.4);
+	else
+		GameTooltip:AddDoubleLine("Flask", "Missing", 1,0.4,0.4, 1,0.4,0.4);
+	end
+
+	GameTooltip:AddLine(" ");
+	
+
+
+	-- raid buff status
+
+	local k,v;
+	for k, v in pairs(BuffGuide.buffs) do
+
+		if (BuffGuide.buffs[k].got) then
+
+			GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, BuffGuide.buffs[k].got_buff, 0.4,1,0.4, 0.4,1,0.4);
+		else
+			GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, "Missing", 1,0.4,0.4, 1,0.4,0.4);
+
+			local k2, v2;
+			for k2, v2 in pairs(BuffGuide.buffs[k].buffs) do
+
+				if (v2[1] == "Dalaran Brilliance") then
+
+				else
+					GameTooltip:AddLine("    "..v2[1].." - "..v2[2]);
+				end
+			end		
+		end
+	end
+end
+
 function BuffGuide.PeriodicCheck()
 
+	-- create a map of all buffs we have
+
+	local buff_map = {};
+
+	local index = 1;
+	while UnitBuff("player", index) do
+		local name, _, _, count, _, _, buffExpires, caster = UnitBuff("player", index)
+		local t = buffExpires - GetTime();
+		buff_map[name] = t;
+		index = index + 1
+	end
+
+	-- now check each raid buff
+
+	BuffGuide.status.buff_num = 0;
+
+	local k,v;
+	for k, v in pairs(BuffGuide.buffs) do
+
+		BuffGuide.buffs[k].got = false;
+
+		local k2, v2;
+		for k2, v2 in pairs(BuffGuide.buffs[k].buffs) do
+
+			local buff = v2[1];
+
+			if (buff_map[buff]) then
+				BuffGuide.buffs[k].got = true;
+				BuffGuide.buffs[k].got_buff = buff..string.format(" : %d", buff_map[buff]);
+			end
+		end
+
+		if (BuffGuide.buffs[k].got) then
+			BuffGuide.status.buff_num = BuffGuide.status.buff_num + 1;
+		end
+	end
+
+	-- check food and flask buffs
+	BuffGuide.status.has_food = false;
+	BuffGuide.status.has_flask = false;
+
+	if (buff_map["Well Fed"]) then
+		BuffGuide.status.has_food = true;
+	end
+
+	if (BuffGuide.showing_tooltip) then
+		BuffGuide.ShowTooltip();
+	end
 end
 
 
