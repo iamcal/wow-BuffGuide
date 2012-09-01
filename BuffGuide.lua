@@ -198,10 +198,10 @@ function BuffGuide.CreateUIFrame()
 		tileSize	= 16,
 		edgeSize	= 8,
 		insets		= {
-			left	= 3,
-			right	= 3,
-			top	= 3,
-			bottom	= 3,
+			left	= 0,
+			right	= 0,
+			top	= 0,
+			bottom	= 0,
 		},
 	});
 	BuffGuide.UIFrame:SetBackdropBorderColor(1,1,1);
@@ -212,6 +212,10 @@ function BuffGuide.CreateUIFrame()
 	-- make it draggable
 	BuffGuide.UIFrame:SetMovable(true);
 	BuffGuide.UIFrame:EnableMouse(true);
+
+	-- for resizing
+	BuffGuide.UIFrame:SetResizable(true);
+	BuffGuide.UIFrame:SetMinResize(32, 32);
 
 	-- create a button that covers the entire addon
 	BuffGuide.Cover = CreateFrame("Button", nil, BuffGuide.UIFrame);
@@ -238,6 +242,46 @@ function BuffGuide.CreateUIFrame()
 	BuffGuide.Label:SetText(" ");
 	BuffGuide.Label:SetTextColor(1,1,1,1);
 	BuffGuide.SetFontSize(BuffGuide.Label, 20);
+
+	BuffGuide.h1 = BuffGuide.AddResizeHandle("BOTTOMLEFT");
+	BuffGuide.h2 = BuffGuide.AddResizeHandle("BOTTOMRIGHT");
+	BuffGuide.h3 = BuffGuide.AddResizeHandle("TOPLEFT");
+	BuffGuide.h4 = BuffGuide.AddResizeHandle("TOPRIGHT");
+end
+
+function BuffGuide.AddResizeHandle(corner)
+
+	local grip = CreateFrame("Button", nil, BuffGuide.UIFrame);
+	grip:SetWidth(16);
+	grip:SetHeight(16);
+	grip:SetFrameLevel(130);
+
+	if (corner == 'BOTTOMLEFT') then grip:SetPoint(corner, -2, -2); end
+	if (corner == 'BOTTOMRIGHT') then grip:SetPoint(corner, 2, -2); end
+	if (corner == 'TOPLEFT') then grip:SetPoint(corner, -2, 2); end
+	if (corner == 'TOPRIGHT') then grip:SetPoint(corner, 2, 2); end
+
+	local texture = grip:CreateTexture();
+	texture:SetDrawLayer("OVERLAY");
+	texture:SetAllPoints(grip);
+	texture:SetTexture("Interface\\AddOns\\BuffGuide\\ResizeGrip");
+
+	if (corner == 'BOTTOMRIGHT') then texture:SetTexCoord(1,0,0,1); end
+	if (corner == 'TOPRIGHT') then texture:SetTexCoord(1,0,1,0); end
+	if (corner == 'TOPLEFT') then texture:SetTexCoord(0,1,1,0); end
+
+	grip:EnableMouse(true);
+	grip:SetScript("OnMouseDown", function(self)
+		BuffGuide.UIFrame.isResizing = true;
+		BuffGuide.UIFrame:StartSizing(corner);
+	end);
+	grip:SetScript("OnMouseUp", function(self)
+		BuffGuide.UIFrame:StopMovingOrSizing();
+		BuffGuide.UIFrame.isResizing = false;
+	end);
+
+	--grip:Hide();
+	return grip;
 end
 
 function BuffGuide.SetFontSize(string, size)
@@ -293,6 +337,11 @@ end
 
 function BuffGuide.ShowTooltip()
 
+	--BuffGuide.h1:Show();
+	--BuffGuide.h2:Show();
+	--BuffGuide.h3:Show();
+	--BuffGuide.h4:Show();
+
 	BuffGuide.showing_tooltip = true;
 
 	GameTooltip:SetOwner(BuffGuide.UIFrame, "ANCHOR_BOTTOM");
@@ -306,6 +355,11 @@ function BuffGuide.ShowTooltip()
 end
 
 function BuffGuide.HideTooltip()
+
+	--BuffGuide.h1:Hide();
+	--BuffGuide.h2:Hide();
+	--BuffGuide.h3:Hide();
+	--BuffGuide.h4:Hide();
 
 	BuffGuide.showing_tooltip = false;
 	GameTooltip:Hide();
