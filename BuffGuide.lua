@@ -128,6 +128,8 @@ function BuffGuide.OnSaving()
 		_G.BuffGuidePrefs.frameRef = relativePoint;
 		_G.BuffGuidePrefs.frameX = xOfs;
 		_G.BuffGuidePrefs.frameY = yOfs;
+		_G.BuffGuidePrefs.frameW = BuffGuide.UIFrame:GetWidth();
+		_G.BuffGuidePrefs.frameH = BuffGuide.UIFrame:GetHeight();
 	end
 end
 
