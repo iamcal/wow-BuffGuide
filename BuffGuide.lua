@@ -395,7 +395,7 @@ function BuffGuide.PopulateTooltip()
 	-- only show raid buff status if we're in a group
 
 	local num = GetNumGroupMembers()
-	if (num == 0) then return; end;
+	--if (num == 0) then return; end;
 
 	GameTooltip:AddLine(" ");
 	
