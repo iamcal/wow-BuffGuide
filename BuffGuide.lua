@@ -287,8 +287,11 @@ function BuffGuide.AddResizeHandle(corner)
 		BuffGuide.UIFrame:StopMovingOrSizing();
 		BuffGuide.UIFrame.isResizing = false;
 	end);
+	grip:SetScript("OnEnter", BuffGuide.ShowHandles);
+	grip:SetScript("OnLeave", BuffGuide.HideHandles);
 
-	--grip:Hide();
+	grip:SetAlpha(0);
+
 	return grip;
 end
 
@@ -345,10 +348,7 @@ end
 
 function BuffGuide.ShowTooltip()
 
-	--BuffGuide.h1:Show();
-	--BuffGuide.h2:Show();
-	--BuffGuide.h3:Show();
-	--BuffGuide.h4:Show();
+	BuffGuide.ShowHandles();
 
 	BuffGuide.showing_tooltip = true;
 
@@ -364,13 +364,26 @@ end
 
 function BuffGuide.HideTooltip()
 
-	--BuffGuide.h1:Hide();
-	--BuffGuide.h2:Hide();
-	--BuffGuide.h3:Hide();
-	--BuffGuide.h4:Hide();
+	BuffGuide.HideHandles();
 
 	BuffGuide.showing_tooltip = false;
 	GameTooltip:Hide();
+end
+
+function BuffGuide.ShowHandles()
+
+	BuffGuide.h1:SetAlpha(1);
+	BuffGuide.h2:SetAlpha(1);
+	BuffGuide.h3:SetAlpha(1);
+	BuffGuide.h4:SetAlpha(1);
+end
+
+function BuffGuide.HideHandles()
+
+	BuffGuide.h1:SetAlpha(0);
+	BuffGuide.h2:SetAlpha(0);
+	BuffGuide.h3:SetAlpha(0);
+	BuffGuide.h4:SetAlpha(0);
 end
 
 function BuffGuide.PopulateTooltip()
