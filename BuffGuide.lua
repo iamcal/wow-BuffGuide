@@ -222,9 +222,7 @@ function BuffGuide.CreateUIFrame()
 	-- create a button that covers the entire addon
 	BuffGuide.Cover = CreateFrame("Button", nil, BuffGuide.UIFrame);
 	BuffGuide.Cover:SetFrameLevel(128);
-	BuffGuide.Cover:SetPoint("TOPLEFT", 0, 0);
-	BuffGuide.Cover:SetWidth(_G.BuffGuidePrefs.frameW);
-	BuffGuide.Cover:SetHeight(_G.BuffGuidePrefs.frameH);
+	BuffGuide.Cover:SetAllPoints(BuffGuide.UIFrame);
 	BuffGuide.Cover:EnableMouse(true);
 	BuffGuide.Cover:RegisterForClicks("AnyUp");
 	BuffGuide.Cover:RegisterForDrag("LeftButton");
@@ -254,23 +252,31 @@ end
 function BuffGuide.AddResizeHandle(corner)
 
 	local grip = CreateFrame("Button", nil, BuffGuide.UIFrame);
-	grip:SetWidth(16);
-	grip:SetHeight(16);
+	grip:SetWidth(9);
+	grip:SetHeight(9);
 	grip:SetFrameLevel(130);
 
-	if (corner == 'BOTTOMLEFT') then grip:SetPoint(corner, -2, -2); end
-	if (corner == 'BOTTOMRIGHT') then grip:SetPoint(corner, 2, -2); end
-	if (corner == 'TOPLEFT') then grip:SetPoint(corner, -2, 2); end
-	if (corner == 'TOPRIGHT') then grip:SetPoint(corner, 2, 2); end
+	grip:SetPoint(corner, 0, 0);
+
+	if (corner == 'BOTTOMLEFT') then grip:SetPoint(corner, 2, 2); end
+	if (corner == 'BOTTOMRIGHT') then grip:SetPoint(corner, -2, 2); end
+	if (corner == 'TOPLEFT') then grip:SetPoint(corner, 2, -2); end
+	if (corner == 'TOPRIGHT') then grip:SetPoint(corner, -2, -2); end
 
 	local texture = grip:CreateTexture();
 	texture:SetDrawLayer("OVERLAY");
 	texture:SetAllPoints(grip);
 	texture:SetTexture("Interface\\AddOns\\BuffGuide\\ResizeGrip");
 
-	if (corner == 'BOTTOMRIGHT') then texture:SetTexCoord(1,0,0,1); end
-	if (corner == 'TOPRIGHT') then texture:SetTexCoord(1,0,1,0); end
-	if (corner == 'TOPLEFT') then texture:SetTexCoord(0,1,1,0); end
+	local tl = 5/16;
+	local tr = 14/16;
+	local tt = 2/16;
+	local tb = 11/16;
+
+	if (corner == 'BOTTOMLEFT') then texture:SetTexCoord(tl,tr,tt,tb); end
+	if (corner == 'BOTTOMRIGHT') then texture:SetTexCoord(tr,tl,tt,tb); end
+	if (corner == 'TOPLEFT') then texture:SetTexCoord(tl,tr,tb,tt); end
+	if (corner == 'TOPRIGHT') then texture:SetTexCoord(tr,tl,tb,tt); end
 
 	grip:EnableMouse(true);
 	grip:SetScript("OnMouseDown", function(self)
