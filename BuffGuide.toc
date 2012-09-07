@@ -6,4 +6,6 @@
 ## Dependencies: 
 ## SavedVariablesPerCharacter: BuffGuidePrefs
 
+Strings-enUS.lua
+
 BuffGuide.lua

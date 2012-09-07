@@ -1,3 +1,17 @@
+-- load locale strings
+local loc = GetLocale();
+local L = BuffGuideLocales["enUS"];
+if (BuffGuideLocales[loc]) then
+	local k, v;
+	for k, v in pairs(L) do
+		if (BuffGuideLocales[loc][k]) then
+			L[k] = BuffGuideLocales[loc][k];
+		else
+			L[k] = "(enUS)"..L[k];
+		end
+	end
+end
+
 BuffGuide = {};
 BuffGuide.fully_loaded = false;
 BuffGuide.default_options = {
@@ -15,7 +29,6 @@ BuffGuide.default_options = {
 
 BuffGuide.buffs = {
 	stats = {
-		name = "Stats",
 		buffs = {
 			{1126, 		"Druid"},			-- "Mark of the Wild"
 			{115921,	"Monk"},			-- Legacy of the Emperor
@@ -24,7 +37,6 @@ BuffGuide.buffs = {
 		},
 	},
 	stamina = {
-		name = "Stamina",
 		buffs = {
 			{21562,		"Priest"},			-- Power Word: Fortitude
 			{6307,		"Warlock (Imp)"},		-- Blood Pact
@@ -34,7 +46,6 @@ BuffGuide.buffs = {
 		},
 	},
 	attack_power = {
-		name = "Attack Power",
 		buffs = {
 			{57330,		"DK"},				-- Horn of Winter
 			{19506,		"Hunter"},			-- Trueshot Aura
@@ -42,7 +53,6 @@ BuffGuide.buffs = {
 		},
 	},
 	spell_power = {
-		name = "Spell Power",
 		buffs = {
 			{1459,		"Mage"},			-- Arcane Brilliance
 			{61316,		"Mage",	true},			-- Dalaran Brilliance
@@ -52,7 +62,6 @@ BuffGuide.buffs = {
 		},
 	},
 	haste = {
-		name = "Haste",
 		buffs = {
 			{55610,		"Frost/Unholy DK"},		-- Unholy Aura
 			{113742,	"Rogue"},			-- Swiftblade's Cunning
@@ -62,7 +71,6 @@ BuffGuide.buffs = {
 		},
 	},
 	spell_haste = {
-		name = "Spell Haste",
 		buffs = {
 			{24858,		"Balance Druid"},		-- Moonkin Aura
 			{15473,		"Shadow Priest"},		-- Shadowform
@@ -70,7 +78,6 @@ BuffGuide.buffs = {
 		},
 	},
 	crit = {
-		name = "Critical Strike",
 		buffs = {
 			{17007,		"Guardian/Feral Druid"},	-- Leader of the Pack
 			{1459,		"Mage"},			-- Arcane Brilliance
@@ -83,7 +90,6 @@ BuffGuide.buffs = {
 		},
 	},
 	mastery = {
-		name = "Mastery",
 		buffs = {
 			{19740,		"Paladin"},			-- Blessing of Might
 			{116956,	"Shaman"},			-- Grace of Air
@@ -384,23 +390,23 @@ function BuffGuide.PopulateTooltip()
 	GameTooltip:ClearLines();
 
 	if (BuffGuide.status.buff_num == 8) then
-		GameTooltip:AddDoubleLine("Raid Buffs", BuffGuide.status.buff_num.."/8", 0.4,1,0.4, 0.4,1,0.4);
+		GameTooltip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 0.4,1,0.4, 0.4,1,0.4);
 	elseif (BuffGuide.status.buff_num >= 6) then
-		GameTooltip:AddDoubleLine("Raid Buffs", BuffGuide.status.buff_num.."/8", 1,1,0.4, 1,1,0.4);
+		GameTooltip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 1,1,0.4, 1,1,0.4);
 	else
-		GameTooltip:AddDoubleLine("Raid Buffs", BuffGuide.status.buff_num.."/8", 1,0.4,0.4, 1,0.4,0.4);
+		GameTooltip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 1,0.4,0.4, 1,0.4,0.4);
 	end
 
 	if (BuffGuide.status.has_food) then
-		GameTooltip:AddDoubleLine("Food Buff", "Yes ("..BuffGuide.FormatRemaining(BuffGuide.status.food_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
+		GameTooltip:AddDoubleLine(L.FOOD_BUFF, L.YES.." ("..BuffGuide.FormatRemaining(BuffGuide.status.food_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
 	else
-		GameTooltip:AddDoubleLine("Food Buff", "Missing", 1,0.4,0.4, 1,0.4,0.4);
+		GameTooltip:AddDoubleLine(L.FOOD_BUFF, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
 	end
 
 	if (BuffGuide.status.has_flask) then
-		GameTooltip:AddDoubleLine("Flask", "Yes ("..BuffGuide.FormatRemaining(BuffGuide.status.flask_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
+		GameTooltip:AddDoubleLine(L.FLASK, L.YES.." ("..BuffGuide.FormatRemaining(BuffGuide.status.flask_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
 	else
-		GameTooltip:AddDoubleLine("Flask", "Missing", 1,0.4,0.4, 1,0.4,0.4);
+		GameTooltip:AddDoubleLine(L.FLASK, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
 	end
 
 
@@ -417,6 +423,8 @@ function BuffGuide.PopulateTooltip()
 	local k,v;
 	for k, v in pairs(BuffGuide.buffs) do
 
+		local buff_name = L["BUFF_"..k];
+
 		if (BuffGuide.buffs[k].got) then
 
 			local status = BuffGuide.buffs[k].got_buff;
@@ -430,13 +438,13 @@ function BuffGuide.PopulateTooltip()
 			end
 
 			if (has_time) then
-				GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, status, 0.4,1,0.4, 0.4,1,0.4);
+				GameTooltip:AddDoubleLine(buff_name, status, 0.4,1,0.4, 0.4,1,0.4);
 			else
-				GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, status, 0.4,1,0.4, 1,1,0.4);
+				GameTooltip:AddDoubleLine(buff_name, status, 0.4,1,0.4, 1,1,0.4);
 			end
 
 		else
-			GameTooltip:AddDoubleLine(BuffGuide.buffs[k].name, "Missing", 1,0.4,0.4, 1,0.4,0.4);
+			GameTooltip:AddDoubleLine(buff_name, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
 
 			local k2, v2;
 			for k2, v2 in pairs(BuffGuide.buffs[k].buffs) do
@@ -529,7 +537,7 @@ end
 function BuffGuide.FormatRemaining(t)
 
 	if (t < 90) then
-		return t.."s";
+		return string.format(L.TIME_S, t);
 	end
 
 	if (t > 60 * 90) then
@@ -538,11 +546,11 @@ function BuffGuide.FormatRemaining(t)
 		t = t - (h * 60 * 60);
 		local m =  math.floor(t / (60));
 
-		return h.."h "..m.."m";
+		return string.format(L.TIME_HM, h, m);
 	end
 
 	local m =  math.floor(t / (60));
-	return m.."m";
+	return string.format(L.TIME_M, m);
 end
 
 
