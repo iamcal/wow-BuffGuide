@@ -16,7 +16,6 @@ BuffGuide.default_options = {
 BuffGuide.buffs = {
 	stats = {
 		name = "Stats",
-		description = "Strength, Agility, and Intellect increased by 5%",
 		buffs = {
 			{1126, 		"Druid"},			-- "Mark of the Wild"
 			{115921,	"Monk"},			-- Legacy of the Emperor
@@ -26,7 +25,6 @@ BuffGuide.buffs = {
 	},
 	stamina = {
 		name = "Stamina",
-		description = "+10% Stamina",
 		buffs = {
 			{21562,		"Priest"},			-- Power Word: Fortitude
 			{6307,		"Warlock (Imp)"},		-- Blood Pact
@@ -37,7 +35,6 @@ BuffGuide.buffs = {
 	},
 	attack_power = {
 		name = "Attack Power",
-		description = "10% Melee and Ranged Attack Power",
 		buffs = {
 			{57330,		"DK"},				-- Horn of Winter
 			{19506,		"Hunter"},			-- Trueshot Aura
@@ -46,7 +43,6 @@ BuffGuide.buffs = {
 	},
 	spell_power = {
 		name = "Spell Power",
-		description = "+10% spell power",
 		buffs = {
 			{1459,		"Mage"},			-- Arcane Brilliance
 			{61316,		"Mage",	true},			-- Dalaran Brilliance
@@ -57,7 +53,6 @@ BuffGuide.buffs = {
 	},
 	haste = {
 		name = "Haste",
-		description = "+10% Melee and Ranged Haste",
 		buffs = {
 			{55610,		"Frost/Unholy DK"},		-- Unholy Aura
 			{113742,	"Rogue"},			-- Swiftblade's Cunning
@@ -68,7 +63,6 @@ BuffGuide.buffs = {
 	},
 	spell_haste = {
 		name = "Spell Haste",
-		description = "+5% Spell Haste",
 		buffs = {
 			{24858,		"Balance Druid"},		-- Moonkin Aura
 			{15473,		"Shadow Priest"},		-- Shadowform
@@ -77,8 +71,6 @@ BuffGuide.buffs = {
 	},
 	crit = {
 		name = "Critical Strike",
-		description = "+5% Ranged, Melee, and Spell Critical Chance",
-		classes = ", Feral Druid, Mage, Hunter (Hydra, Wolf, Devilsaur, Quilen, Water Strider)",
 		buffs = {
 			{17007,		"Guardian/Feral Druid"},	-- Leader of the Pack
 			{1459,		"Mage"},			-- Arcane Brilliance
@@ -92,7 +84,6 @@ BuffGuide.buffs = {
 	},
 	mastery = {
 		name = "Mastery",
-		description = "+5 Mastery",
 		buffs = {
 			{19740,		"Paladin"},			-- Blessing of Might
 			{116956,	"Shaman"},			-- Grace of Air
