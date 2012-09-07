@@ -18,60 +18,61 @@ BuffGuide.buffs = {
 		name = "Stats",
 		description = "Strength, Agility, and Intellect increased by 5%",
 		buffs = {
-			{"Mark of the Wild",		"Druid"},
-			{"Legacy of the Emperor",	"Monk"},
-			{"Blessing of Kings",		"Paladin"},
-			{"Embrace of the Shale Spider",	"BM Hunter (Shale Spider)"},
+			{1126, 		"XXXMark of the Wild",		"Druid"},
+			{115921,	"Legacy of the Emperor",	"Monk"},
+			{20217,		"Blessing of Kings",		"Paladin"},
+			{90363,		"Embrace of the Shale Spider",	"BM Hunter (Shale Spider)"},
 		},
 	},
 	stamina = {
 		name = "Stamina",
 		description = "+10% Stamina",
 		buffs = {
-			{"Power Word: Fortitude",	"Priest"},
-			{"Blood Pact",			"Warlock (Imp)"},
-			{"Commanding Shout",		"Warrior"},
-			{"Qiraji Fortitude",		"BM Hunter (Silithid)"},
+			{21562,		"Power Word: Fortitude",	"Priest"},
+			{6307,		"Blood Pact",			"Warlock (Imp)"},
+			{103127,	"Imp: Blood Pact",		"Warlock (Imp)", 	true},
+			{469,		"Commanding Shout",		"Warrior"},
+			{90364,		"Qiraji Fortitude",		"BM Hunter (Silithid)"},
 		},
 	},
 	attack_power = {
 		name = "Attack Power",
 		description = "10% Melee and Ranged Attack Power",
 		buffs = {
-			{"Horn of Winter",	"DK"},
-			{"Trueshot Aura",	"Hunter"},
-			{"Battle Shout",	"Warrior"},
+			{57330,		"Horn of Winter",	"DK"},
+			{19506,		"Trueshot Aura",	"Hunter"},
+			{6673,		"Battle Shout",		"Warrior"},
 		},
 	},
 	spell_power = {
 		name = "Spell Power",
 		description = "+10% spell power",
 		buffs = {
-			{"Arcane Brilliance",	"Mage"},
-			{"Dalaran Brilliance",	"Mage"},
-			{"Burning Wrath",	"Shaman"},
-			{"Dark Intent",		"Warlock"},
-			{"Still Water",		"BM Hunter (Waterstrider)"},
+			{1459,		"Arcane Brilliance",	"Mage"},
+			{61316,		"Dalaran Brilliance",	"Mage",	true},
+			{77747,		"Burning Wrath",	"Shaman"},
+			{109773,	"Dark Intent",		"Warlock"},
+			{126309,	"Still Water",		"BM Hunter (Waterstrider)"},
 		},
 	},
 	haste = {
 		name = "Haste",
 		description = "+10% Melee and Ranged Haste",
 		buffs = {
-			{"Unholy Aura",			"Frost/Unholy DK"},
-			{"Swiftblade's Cunning",	"Rogue"},
-			{"Unleashed Rage",		"Enhancement Shaman"},
-			{"Cackling Howl",		"Hunter (Hyena)"},
-			{"Serpent's Swiftness",		"Hunter (Serpent)"},
+			{55610,		"Unholy Aura",			"Frost/Unholy DK"},
+			{113742,	"Swiftblade's Cunning",		"Rogue"},
+			{30809,		"Unleashed Rage",		"Enhancement Shaman"},
+			{128432,	"Cackling Howl",		"Hunter (Hyena)"},
+			{128433,	"Serpent's Swiftness",		"Hunter (Serpent)"},
 		},
 	},
 	spell_haste = {
 		name = "Spell Haste",
 		description = "+5% Spell Haste",
 		buffs = {
-			{"Moonkin Aura",	"Balance Druid"},
-			{"Shadowform",		"Shadow Priest"},
-			{"Elemental Oath",	"Elemental Shaman"},
+			{24858,		"Moonkin Aura",		"Balance Druid"},
+			{15473,		"Shadowform",		"Shadow Priest"},
+			{51470,		"Elemental Oath",	"Elemental Shaman"},
 		},
 	},
 	crit = {
@@ -79,29 +80,30 @@ BuffGuide.buffs = {
 		description = "+5% Ranged, Melee, and Spell Critical Chance",
 		classes = ", Feral Druid, Mage, Hunter (Hydra, Wolf, Devilsaur, Quilen, Water Strider)",
 		buffs = {
-			{"Leader of the Pack",	"Guardian/Feral Druid"},
-			{"Arcane Brilliance",	"Mage"},
-			{"Dalaran Brilliance",	"Mage"},
-			{"Bellowing Roar",	"Hunter (Hydra)"},
-			{"Furious Howl",	"Hunter (Wolf)"},
-			{"Terrifying Roar",	"Hunter (Devilsaur)"},
-			{"Fearless Roar",	"Hunter (Quilen)"},
-			{"Still Water",		"Hunter (Water Strider)"},
+			{17007,		"Leader of the Pack",	"Guardian/Feral Druid"},
+			{1459,		"Arcane Brilliance",	"Mage"},
+			{61316,		"Dalaran Brilliance",	"Mage",	true},
+			{97229,		"Bellowing Roar",	"Hunter (Hydra)"},
+			{24604,		"Furious Howl",		"Hunter (Wolf)"},
+			{90309,		"Terrifying Roar",	"Hunter (Devilsaur)"},
+			{126373,	"Fearless Roar",	"Hunter (Quilen)"},
+			{126309,	"Still Water",		"Hunter (Water Strider)"},
 		},
 	},
 	mastery = {
 		name = "Mastery",
 		description = "+5 Mastery",
 		buffs = {
-			{"Blessing of Might",		"Paladin"},
-			{"Grace of Air",		"Shaman"},
-			{"Roar of Courage",		"Hunter (Cat)"},
-			{"Spirit Beast Blessing",	"Hunter (Spirit Beast)"},
+			{19740,		"Blessing of Might",		"Paladin"},
+			{116956,	"Grace of Air",			"Shaman"},
+			{93435,		"Roar of Courage",		"Hunter (Cat)"},
+			{128997,	"Spirit Beast Blessing",	"Hunter (Spirit Beast)"},
 		},
 	},
 };
 
 BuffGuide.status = {};
+BuffGuide.spell_cache = {};
 BuffGuide.last_check = 0;
 BuffGuide.time_between_checks = 5; -- only update every 5 seconds
 BuffGuide.showing_tooltip = false;
@@ -448,10 +450,11 @@ function BuffGuide.PopulateTooltip()
 			local k2, v2;
 			for k2, v2 in pairs(BuffGuide.buffs[k].buffs) do
 
-				if (v2[1] == "Dalaran Brilliance") then
-
+				if (v2[4]) then
+					-- flag for hiding a buff
 				else
-					GameTooltip:AddLine("    "..v2[1].." - "..v2[2]);
+					local name = BuffGuide.GetSpellName(v2[1]);
+					GameTooltip:AddLine("    "..name.." - "..v2[3]);
 				end
 			end		
 		end
@@ -466,9 +469,9 @@ function BuffGuide.PeriodicCheck()
 
 	local index = 1;
 	while UnitBuff("player", index) do
-		local name, _, _, count, _, _, buffExpires, caster = UnitBuff("player", index)
+		local name, _, _, count, _, _, buffExpires, caster, _, _, spellId = UnitBuff("player", index)
 		local t = buffExpires - GetTime();
-		buff_map[name] = t;
+		buff_map[spellId] = { time=t, name=name };
 		index = index + 1
 	end
 
@@ -488,8 +491,8 @@ function BuffGuide.PeriodicCheck()
 
 			if (buff_map[buff]) then
 				BuffGuide.buffs[k].got = true;
-				BuffGuide.buffs[k].got_buff = buff;
-				BuffGuide.buffs[k].remain = buff_map[buff];
+				BuffGuide.buffs[k].got_buff = buff_map[buff].name;
+				BuffGuide.buffs[k].remain = buff_map[buff].time;
 			end
 		end
 
@@ -502,22 +505,34 @@ function BuffGuide.PeriodicCheck()
 	BuffGuide.status.has_food = false;
 	BuffGuide.status.has_flask = false;
 
-	if (buff_map["Well Fed"]) then
-		BuffGuide.status.has_food = true;
-		BuffGuide.status.food_remain = buff_map["Well Fed"];
-	end
+	local fed = BuffGuide.GetSpellName(87562);
 
 	local k,v;
 	for k, v in pairs(buff_map) do
-		if (string.find(k, "Flask of")) then
+		if (string.find(v.name, "Flask of")) then
 			BuffGuide.status.has_flask = true;
-			BuffGuide.status.flask_remain = v;
+			BuffGuide.status.flask_remain = v.time;
+		end
+
+		if (string.find(v.name, fed)) then
+			BuffGuide.status.has_food = true;
+			BuffGuide.status.food_remain = v.time;
 		end
 	end
 
 	if (BuffGuide.showing_tooltip) then
 		BuffGuide.ShowTooltip();
 	end
+end
+
+function BuffGuide.GetSpellName(id)
+
+	if (not BuffGuide.spell_cache[id]) then
+		local name = GetSpellInfo(id);
+		BuffGuide.spell_cache[id] = name;
+	end
+
+	return BuffGuide.spell_cache[id];
 end
 
 function BuffGuide.FormatRemaining(t)
