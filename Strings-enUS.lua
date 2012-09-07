@@ -8,6 +8,9 @@ BuffGuideLocales["enUS"] = {
 	YES		= "Yes",
 	MISSING		= "Missing",
 
+	-- this next string is required to make flasks work
+	FLASK_OF	= "Flask of",
+
 	TIME_S		= "%ss",
 	TIME_M		= "%sm",
 	TIME_HM		= "%sh %sm",

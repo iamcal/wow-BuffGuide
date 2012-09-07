@@ -30,7 +30,7 @@ BuffGuide.default_options = {
 BuffGuide.buffs = {
 	stats = {
 		buffs = {
-			{1126, 		L.FROM_DRUID},		-- "Mark of the Wild"
+			{1126, 		L.FROM_DRUID},		-- Mark of the Wild
 			{115921,	L.FROM_MONK},		-- Legacy of the Emperor
 			{20217,		L.FROM_PALADIN},	-- Blessing of Kings
 			{90363,		L.FROM_SHALE},		-- Embrace of the Shale Spider
@@ -508,7 +508,7 @@ function BuffGuide.PeriodicCheck()
 
 	local k,v;
 	for k, v in pairs(buff_map) do
-		if (string.find(v.name, "Flask of")) then
+		if (string.find(v.name, L.FLASK_OF)) then
 			BuffGuide.status.has_flask = true;
 			BuffGuide.status.flask_remain = v.time;
 		end
