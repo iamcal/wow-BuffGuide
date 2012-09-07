@@ -5,3 +5,6 @@
  * Added spacing between buff name and time remaining
  * better visual styling - use built-in frame borders and shading
  * allow drag-to-resize of frame
+
+1.2
+ * Support for multiple locales
