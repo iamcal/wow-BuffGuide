@@ -30,71 +30,71 @@ BuffGuide.default_options = {
 BuffGuide.buffs = {
 	stats = {
 		buffs = {
-			{1126, 		"Druid"},			-- "Mark of the Wild"
-			{115921,	"Monk"},			-- Legacy of the Emperor
-			{20217,		"Paladin"},			-- Blessing of Kings
-			{90363,		"BM Hunter (Shale Spider)"},	-- Embrace of the Shale Spider
+			{1126, 		L.FROM_DRUID},		-- "Mark of the Wild"
+			{115921,	L.FROM_MONK},		-- Legacy of the Emperor
+			{20217,		L.FROM_PALADIN},	-- Blessing of Kings
+			{90363,		L.FROM_SHALE},		-- Embrace of the Shale Spider
 		},
 	},
 	stamina = {
 		buffs = {
-			{21562,		"Priest"},			-- Power Word: Fortitude
-			{6307,		"Warlock (Imp)"},		-- Blood Pact
-			{103127,	"Warlock (Imp)", 	true},	-- Imp: Blood Pact
-			{469,		"Warrior"},			-- Commanding Shout
-			{90364,		"BM Hunter (Silithid)"},	-- Qiraji Fortitude
+			{21562,		L.FROM_PRIEST},		-- Power Word: Fortitude
+			{6307,		L.FROM_IMP},		-- Blood Pact
+			{103127,	L.FROM_IMP, 	true},	-- Imp: Blood Pact
+			{469,		L.FROM_WARRIOR},	-- Commanding Shout
+			{90364,		L.FROM_SILITHID},	-- Qiraji Fortitude
 		},
 	},
 	attack_power = {
 		buffs = {
-			{57330,		"DK"},				-- Horn of Winter
-			{19506,		"Hunter"},			-- Trueshot Aura
-			{6673,		"Warrior"},			-- Battle Shout
+			{57330,		L.FROM_FROM_DK},	-- Horn of Winter
+			{19506,		L.FROM_HUNTER},		-- Trueshot Aura
+			{6673,		L.FROM_WARRIOR},	-- Battle Shout
 		},
 	},
 	spell_power = {
 		buffs = {
-			{1459,		"Mage"},			-- Arcane Brilliance
-			{61316,		"Mage",	true},			-- Dalaran Brilliance
-			{77747,		"Shaman"},			-- Burning Wrath
-			{109773,	"Warlock"},			-- Dark Intent
-			{126309,	"BM Hunter (Waterstrider)"},	-- Still Water
+			{1459,		L.FROM_MAGE},		-- Arcane Brilliance
+			{61316,		L.FROM_MAGE,	true},	-- Dalaran Brilliance
+			{77747,		L.FROM_SHAMAN},		-- Burning Wrath
+			{109773,	L.FROM_WARLOCK},	-- Dark Intent
+			{126309,	L.FROM_WSTRIDER},	-- Still Water
 		},
 	},
 	haste = {
 		buffs = {
-			{55610,		"Frost/Unholy DK"},		-- Unholy Aura
-			{113742,	"Rogue"},			-- Swiftblade's Cunning
-			{30809,		"Enhancement Shaman"},		-- Unleashed Rage
-			{128432,	"Hunter (Hyena)"},		-- Cackling Howl
-			{128433,	"Hunter (Serpent)"},		-- Serpent's Swiftness
+			{55610,		L.FROM_DK_FU},		-- Unholy Aura
+			{113742,	L.FROM_ROGUE},		-- Swiftblade's Cunning
+			{30809,		L.FROM_SHAM_ENC},	-- Unleashed Rage
+			{128432,	L.FROM_HYENA},		-- Cackling Howl
+			{128433,	L.FROM_SERPENT},	-- Serpent's Swiftness
 		},
 	},
 	spell_haste = {
 		buffs = {
-			{24858,		"Balance Druid"},		-- Moonkin Aura
-			{15473,		"Shadow Priest"},		-- Shadowform
-			{51470,		"Elemental Shaman"},		-- Elemental Oath
+			{24858,		L.FROM_DRUID_BAL},	-- Moonkin Aura
+			{15473,		L.FROM_SPRIEST},	-- Shadowform
+			{51470,		L.FROM_SHAM_ELE},	-- Elemental Oath
 		},
 	},
 	crit = {
 		buffs = {
-			{17007,		"Guardian/Feral Druid"},	-- Leader of the Pack
-			{1459,		"Mage"},			-- Arcane Brilliance
-			{61316,		"Mage",	true},			-- Dalaran Brilliance
-			{97229,		"Hunter (Hydra)"},		-- Bellowing Roar
-			{24604,		"Hunter (Wolf)"},		-- Furious Howl
-			{90309,		"Hunter (Devilsaur)"},		-- Terrifying Roar
-			{126373,	"Hunter (Quilen)"},		-- Fearless Roar
-			{126309,	"Hunter (Water Strider)"},	-- Still Water
+			{17007,		L.FROM_DRUID_FER},	-- Leader of the Pack
+			{1459,		L.FROM_MAGE},		-- Arcane Brilliance
+			{61316,		L.FROM_MAGE,	true},	-- Dalaran Brilliance
+			{97229,		L.FROM_HYDRA},		-- Bellowing Roar
+			{24604,		L.FROM_WOLF},		-- Furious Howl
+			{90309,		L.FROM_DEVILSAUR},	-- Terrifying Roar
+			{126373,	L.FROM_QUILEN},		-- Fearless Roar
+			{126309,	L.FROM_WSTRIDER},	-- Still Water
 		},
 	},
 	mastery = {
 		buffs = {
-			{19740,		"Paladin"},			-- Blessing of Might
-			{116956,	"Shaman"},			-- Grace of Air
-			{93435,		"Hunter (Cat)"},		-- Roar of Courage
-			{128997,	"Hunter (Spirit Beast)"},	-- Spirit Beast Blessing
+			{19740,		L.FROM_PALADIN},	-- Blessing of Might
+			{116956,	L.FROM_SHAMAN},		-- Grace of Air
+			{93435,		L.FROM_CAT},		-- Roar of Courage
+			{128997,	L.FROM_SPIRIT},		-- Spirit Beast Blessing
 		},
 	},
 };
