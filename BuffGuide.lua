@@ -18,61 +18,61 @@ BuffGuide.buffs = {
 		name = "Stats",
 		description = "Strength, Agility, and Intellect increased by 5%",
 		buffs = {
-			{1126, 		"XXXMark of the Wild",		"Druid"},
-			{115921,	"Legacy of the Emperor",	"Monk"},
-			{20217,		"Blessing of Kings",		"Paladin"},
-			{90363,		"Embrace of the Shale Spider",	"BM Hunter (Shale Spider)"},
+			{1126, 		"Druid"},			-- "Mark of the Wild"
+			{115921,	"Monk"},			-- Legacy of the Emperor
+			{20217,		"Paladin"},			-- Blessing of Kings
+			{90363,		"BM Hunter (Shale Spider)"},	-- Embrace of the Shale Spider
 		},
 	},
 	stamina = {
 		name = "Stamina",
 		description = "+10% Stamina",
 		buffs = {
-			{21562,		"Power Word: Fortitude",	"Priest"},
-			{6307,		"Blood Pact",			"Warlock (Imp)"},
-			{103127,	"Imp: Blood Pact",		"Warlock (Imp)", 	true},
-			{469,		"Commanding Shout",		"Warrior"},
-			{90364,		"Qiraji Fortitude",		"BM Hunter (Silithid)"},
+			{21562,		"Priest"},			-- Power Word: Fortitude
+			{6307,		"Warlock (Imp)"},		-- Blood Pact
+			{103127,	"Warlock (Imp)", 	true},	-- Imp: Blood Pact
+			{469,		"Warrior"},			-- Commanding Shout
+			{90364,		"BM Hunter (Silithid)"},	-- Qiraji Fortitude
 		},
 	},
 	attack_power = {
 		name = "Attack Power",
 		description = "10% Melee and Ranged Attack Power",
 		buffs = {
-			{57330,		"Horn of Winter",	"DK"},
-			{19506,		"Trueshot Aura",	"Hunter"},
-			{6673,		"Battle Shout",		"Warrior"},
+			{57330,		"DK"},				-- Horn of Winter
+			{19506,		"Hunter"},			-- Trueshot Aura
+			{6673,		"Warrior"},			-- Battle Shout
 		},
 	},
 	spell_power = {
 		name = "Spell Power",
 		description = "+10% spell power",
 		buffs = {
-			{1459,		"Arcane Brilliance",	"Mage"},
-			{61316,		"Dalaran Brilliance",	"Mage",	true},
-			{77747,		"Burning Wrath",	"Shaman"},
-			{109773,	"Dark Intent",		"Warlock"},
-			{126309,	"Still Water",		"BM Hunter (Waterstrider)"},
+			{1459,		"Mage"},			-- Arcane Brilliance
+			{61316,		"Mage",	true},			-- Dalaran Brilliance
+			{77747,		"Shaman"},			-- Burning Wrath
+			{109773,	"Warlock"},			-- Dark Intent
+			{126309,	"BM Hunter (Waterstrider)"},	-- Still Water
 		},
 	},
 	haste = {
 		name = "Haste",
 		description = "+10% Melee and Ranged Haste",
 		buffs = {
-			{55610,		"Unholy Aura",			"Frost/Unholy DK"},
-			{113742,	"Swiftblade's Cunning",		"Rogue"},
-			{30809,		"Unleashed Rage",		"Enhancement Shaman"},
-			{128432,	"Cackling Howl",		"Hunter (Hyena)"},
-			{128433,	"Serpent's Swiftness",		"Hunter (Serpent)"},
+			{55610,		"Frost/Unholy DK"},		-- Unholy Aura
+			{113742,	"Rogue"},			-- Swiftblade's Cunning
+			{30809,		"Enhancement Shaman"},		-- Unleashed Rage
+			{128432,	"Hunter (Hyena)"},		-- Cackling Howl
+			{128433,	"Hunter (Serpent)"},		-- Serpent's Swiftness
 		},
 	},
 	spell_haste = {
 		name = "Spell Haste",
 		description = "+5% Spell Haste",
 		buffs = {
-			{24858,		"Moonkin Aura",		"Balance Druid"},
-			{15473,		"Shadowform",		"Shadow Priest"},
-			{51470,		"Elemental Oath",	"Elemental Shaman"},
+			{24858,		"Balance Druid"},		-- Moonkin Aura
+			{15473,		"Shadow Priest"},		-- Shadowform
+			{51470,		"Elemental Shaman"},		-- Elemental Oath
 		},
 	},
 	crit = {
@@ -80,24 +80,24 @@ BuffGuide.buffs = {
 		description = "+5% Ranged, Melee, and Spell Critical Chance",
 		classes = ", Feral Druid, Mage, Hunter (Hydra, Wolf, Devilsaur, Quilen, Water Strider)",
 		buffs = {
-			{17007,		"Leader of the Pack",	"Guardian/Feral Druid"},
-			{1459,		"Arcane Brilliance",	"Mage"},
-			{61316,		"Dalaran Brilliance",	"Mage",	true},
-			{97229,		"Bellowing Roar",	"Hunter (Hydra)"},
-			{24604,		"Furious Howl",		"Hunter (Wolf)"},
-			{90309,		"Terrifying Roar",	"Hunter (Devilsaur)"},
-			{126373,	"Fearless Roar",	"Hunter (Quilen)"},
-			{126309,	"Still Water",		"Hunter (Water Strider)"},
+			{17007,		"Guardian/Feral Druid"},	-- Leader of the Pack
+			{1459,		"Mage"},			-- Arcane Brilliance
+			{61316,		"Mage",	true},			-- Dalaran Brilliance
+			{97229,		"Hunter (Hydra)"},		-- Bellowing Roar
+			{24604,		"Hunter (Wolf)"},		-- Furious Howl
+			{90309,		"Hunter (Devilsaur)"},		-- Terrifying Roar
+			{126373,	"Hunter (Quilen)"},		-- Fearless Roar
+			{126309,	"Hunter (Water Strider)"},	-- Still Water
 		},
 	},
 	mastery = {
 		name = "Mastery",
 		description = "+5 Mastery",
 		buffs = {
-			{19740,		"Blessing of Might",		"Paladin"},
-			{116956,	"Grace of Air",			"Shaman"},
-			{93435,		"Roar of Courage",		"Hunter (Cat)"},
-			{128997,	"Spirit Beast Blessing",	"Hunter (Spirit Beast)"},
+			{19740,		"Paladin"},			-- Blessing of Might
+			{116956,	"Shaman"},			-- Grace of Air
+			{93435,		"Hunter (Cat)"},		-- Roar of Courage
+			{128997,	"Hunter (Spirit Beast)"},	-- Spirit Beast Blessing
 		},
 	},
 };
@@ -450,11 +450,11 @@ function BuffGuide.PopulateTooltip()
 			local k2, v2;
 			for k2, v2 in pairs(BuffGuide.buffs[k].buffs) do
 
-				if (v2[4]) then
+				if (v2[3]) then
 					-- flag for hiding a buff
 				else
 					local name = BuffGuide.GetSpellName(v2[1]);
-					GameTooltip:AddLine("    "..name.." - "..v2[3]);
+					GameTooltip:AddLine("    "..name.." - "..v2[2]);
 				end
 			end		
 		end
