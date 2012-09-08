@@ -47,7 +47,7 @@ BuffGuide.buffs = {
 	},
 	attack_power = {
 		buffs = {
-			{57330,		L.FROM_FROM_DK},	-- Horn of Winter
+			{57330,		L.FROM_DK},		-- Horn of Winter
 			{19506,		L.FROM_HUNTER},		-- Trueshot Aura
 			{6673,		L.FROM_WARRIOR},	-- Battle Shout
 		},
