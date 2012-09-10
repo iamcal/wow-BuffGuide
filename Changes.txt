@@ -8,3 +8,7 @@
 
 1.2
  * Support for multiple locales
+ * Calculates buffs (apart from flasks) from spellIDs, so works in all locales
+ * Added a LibDataBroker feed and tooltip
+ * Added slash commands (show/hide/toggle/reset)
+ * Added a right-click menu for hiding the frame
