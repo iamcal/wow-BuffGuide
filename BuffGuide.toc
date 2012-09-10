@@ -6,6 +6,10 @@
 ## Dependencies: 
 ## SavedVariablesPerCharacter: BuffGuidePrefs
 
-Strings-enUS.lua
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+
+Locales\Strings-enUS.lua
 
 BuffGuide.lua
