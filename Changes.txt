@@ -12,3 +12,6 @@
  * Added a LibDataBroker feed and tooltip
  * Added slash commands (show/hide/toggle/reset)
  * Added a right-click menu for hiding the frame
+
+1.3
+ * Added French strings
