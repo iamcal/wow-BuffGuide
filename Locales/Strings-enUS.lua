@@ -77,5 +77,7 @@ BuffGuideLocales["enUS"] = {
 	SLASH_HIDE_HELP = "Hide frame",
 	SLASH_TOGGLE_HELP = "Toggle frame",
 	SLASH_RESET_HELP = "Reset frame position and size",
-	
+
+	MENU_HIDE	= "Hide frame",
+	MENU_HIDE_TIP	= "BuffGuide has been hidden. Type \"%s\" to show it again.",
 };

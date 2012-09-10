@@ -327,7 +327,7 @@ end
 
 function BuffGuide.OnClick(self, aButton)
 	if (aButton == "RightButton") then
-		print("show menu here!");
+		BuffGuide.ShowMenu();
 	end
 end
 
@@ -609,6 +609,26 @@ function BuffGuide.FormatRemaining(t)
 
 	local m =  math.floor(t / (60));
 	return string.format(L.TIME_M, m);
+end
+
+function BuffGuide.ShowMenu()
+
+	local menu_frame = CreateFrame("Frame", "menuFrame", UIParent, "UIDropDownMenuTemplate");
+
+	local menuList = {};
+
+	table.insert(menuList, {
+		text = L.MENU_HIDE,
+		func = function()
+			BuffGuide.Hide();
+			print(string.format(L.MENU_HIDE_TIP, L.SLASH_COMMAND.." "..L.SLASH_SHOW));
+		end,
+		isTitle = false,
+		checked = false,
+		disabled = false,
+	});
+
+	EasyMenu(menuList, menu_frame, "cursor", 0 , 0, "MENU");
 end
 
 -- ##################################################################
