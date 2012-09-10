@@ -15,6 +15,10 @@ BuffGuideLocales["enUS"] = {
 
 	TIP_CLICK = "|cff7fff7fClick|r to toggle the BuffGuide window.",
 
+	LDB_NO_FOOD		= "No food",
+	LDB_NO_FLASK		= "No flask",
+	LDB_NO_FOOD_FLASK	= "No food or flask",
+
 	TIME_S		= "%ss",
 	TIME_M		= "%sm",
 	TIME_HM		= "%sh %sm",

@@ -529,7 +529,22 @@ function BuffGuide.PeriodicCheck()
 	end
 
 
-	ldb_feed.text = BuffGuide.status.buff_num.."/8";
+	-- update LDB status text
+	local ldb_status = BuffGuide.status.buff_num.."/8";
+	if (BuffGuide.status.has_food) then
+		if (BuffGuide.status.has_flask) then
+		else
+			ldb_status = ldb_status .. " ("..L.LDB_NO_FLASK..")";
+		end
+	else
+		if (BuffGuide.status.has_flask) then
+			ldb_status = ldb_status .. " ("..L.LDB_NO_FOOD..")";
+		else
+			ldb_status = ldb_status .. " ("..L.LDB_NO_FOOD_FLASK..")";
+		end
+	end
+
+	ldb_feed.text = ldb_status;
 	ldb_feed.icon = [[Interface\Icons\spell_magic_greaterblessingofkings]];
 end
 
