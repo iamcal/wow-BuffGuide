@@ -63,4 +63,19 @@ BuffGuideLocales["enUS"] = {
 	FROM_QUILEN	= "Hunter (Quilen)",
 	FROM_CAT	= "Hunter (Cat)",
 	FROM_SPIRIT	= "Hunter (Spirit Beast)",
+
+
+	SLASH_COMMAND	= "/buffguide",
+	SLASH_HELP = "BuffGuide commands:",
+
+	SLASH_SHOW	= "show",
+	SLASH_HIDE	= "hide",
+	SLASH_TOGGLE	= "toggle",
+	SLASH_RESET	= "reset",
+
+	SLASH_SHOW_HELP = "Show frame",
+	SLASH_HIDE_HELP = "Hide frame",
+	SLASH_TOGGLE_HELP = "Toggle frame",
+	SLASH_RESET_HELP = "Reset frame position and size",
+	
 };

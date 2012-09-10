@@ -251,6 +251,13 @@ function BuffGuide.CreateUIFrame()
 	BuffGuide.h2 = BuffGuide.AddResizeHandle("BOTTOMRIGHT");
 	BuffGuide.h3 = BuffGuide.AddResizeHandle("TOPLEFT");
 	BuffGuide.h4 = BuffGuide.AddResizeHandle("TOPRIGHT");
+
+	-- show or hide?
+	if (_G.BuffGuidePrefs.hide) then
+		BuffGuide.UIFrame:Hide();
+	else
+		BuffGuide.UIFrame:Show();
+	end
 end
 
 function BuffGuide.AddResizeHandle(corner)
@@ -321,6 +328,33 @@ end
 function BuffGuide.OnClick(self, aButton)
 	if (aButton == "RightButton") then
 		print("show menu here!");
+	end
+end
+
+function BuffGuide.Show()
+	_G.BuffGuidePrefs.hide = false;
+	BuffGuide.UIFrame:Show();
+end
+
+function BuffGuide.Hide()
+	_G.BuffGuidePrefs.hide = true;
+	BuffGuide.UIFrame:Hide();
+end
+
+function BuffGuide.ResetPos()
+	BuffGuide.Show();
+	BuffGuide.UIFrame:SetWidth(BuffGuide.default_options.frameW);
+	BuffGuide.UIFrame:SetHeight(BuffGuide.default_options.frameH);
+	BuffGuide.UIFrame:ClearAllPoints();
+	BuffGuide.UIFrame:SetPoint("CENTER", 0, 0);
+end
+
+function BuffGuide.Toggle()
+
+	if (_G.BuffGuidePrefs.hide) then
+		BuffGuide.Show();
+	else
+		BuffGuide.Hide();
 	end
 end
 
@@ -587,12 +621,35 @@ end
 
 function ldb_feed:OnClick(aButton)
 	if (aButton == "LeftButton") then
-		--BuffGuide.Toggle();
+		BuffGuide.Toggle();
 	end
 end
 
 -- ##################################################################
 
+function BuffGuide.SlashCommand(msg, editbox)
+	if (msg == L.SLASH_SHOW) then
+		BuffGuide.Show();
+	elseif (msg == L.SLASH_HIDE) then
+		BuffGuide.Hide();
+	elseif (msg == L.SLASH_TOGGLE) then
+		BuffGuide.Toggle();
+	elseif (msg == L.SLASH_RESET) then
+		BuffGuide.ResetPos();
+	else
+		print(L.SLASH_HELP);
+		print(string.format("   %s %s - %s", L.SLASH_COMMAND, L.SLASH_SHOW,   L.SLASH_SHOW_HELP  ));
+		print(string.format("   %s %s - %s", L.SLASH_COMMAND, L.SLASH_HIDE,   L.SLASH_HIDE_HELP  ));
+		print(string.format("   %s %s - %s", L.SLASH_COMMAND, L.SLASH_TOGGLE, L.SLASH_TOGGLE_HELP));
+		print(string.format("   %s %s - %s", L.SLASH_COMMAND, L.SLASH_RESET,  L.SLASH_RESET_HELP ));
+	end
+end
+
+SLASH_BUFFGUIDE1 = L.SLASH_COMMAND;
+
+SlashCmdList["BUFFGUIDE"] = BuffGuide.SlashCommand;
+
+-- ##################################################################
 
 BuffGuide.EventFrame = CreateFrame("Frame");
 BuffGuide.EventFrame:Show();
