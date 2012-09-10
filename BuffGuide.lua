@@ -12,6 +12,11 @@ if (BuffGuideLocales[loc]) then
 	end
 end
 
+-- LDB plugin
+local ldb = LibStub:GetLibrary("LibDataBroker-1.1")
+local ldb_feed = ldb:NewDataObject("BuffGuide", {type = "data source", text = "...", label = L.ADDON_NAME});
+
+
 BuffGuide = {};
 BuffGuide.fully_loaded = false;
 BuffGuide.default_options = {
@@ -353,7 +358,7 @@ function BuffGuide.ShowTooltip()
 
 	GameTooltip:SetOwner(BuffGuide.UIFrame, "ANCHOR_BOTTOM");
 
-	BuffGuide.PopulateTooltip();
+	BuffGuide.PopulateTooltip(GameTooltip);
 
 	GameTooltip:ClearAllPoints()
 	GameTooltip:SetPoint("TOPLEFT", BuffGuide.UIFrame, "BOTTOMLEFT"); 
@@ -385,28 +390,28 @@ function BuffGuide.HideHandles()
 	BuffGuide.h4:SetAlpha(0);
 end
 
-function BuffGuide.PopulateTooltip()
+function BuffGuide.PopulateTooltip(tip)
 
-	GameTooltip:ClearLines();
+	tip:ClearLines();
 
 	if (BuffGuide.status.buff_num == 8) then
-		GameTooltip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 0.4,1,0.4, 0.4,1,0.4);
+		tip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 0.4,1,0.4, 0.4,1,0.4);
 	elseif (BuffGuide.status.buff_num >= 6) then
-		GameTooltip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 1,1,0.4, 1,1,0.4);
+		tip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 1,1,0.4, 1,1,0.4);
 	else
-		GameTooltip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 1,0.4,0.4, 1,0.4,0.4);
+		tip:AddDoubleLine(L.RAID_BUFFS, BuffGuide.status.buff_num.."/8", 1,0.4,0.4, 1,0.4,0.4);
 	end
 
 	if (BuffGuide.status.has_food) then
-		GameTooltip:AddDoubleLine(L.FOOD_BUFF, L.YES.." ("..BuffGuide.FormatRemaining(BuffGuide.status.food_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
+		tip:AddDoubleLine(L.FOOD_BUFF, L.YES.." ("..BuffGuide.FormatRemaining(BuffGuide.status.food_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
 	else
-		GameTooltip:AddDoubleLine(L.FOOD_BUFF, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
+		tip:AddDoubleLine(L.FOOD_BUFF, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
 	end
 
 	if (BuffGuide.status.has_flask) then
-		GameTooltip:AddDoubleLine(L.FLASK, L.YES.." ("..BuffGuide.FormatRemaining(BuffGuide.status.flask_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
+		tip:AddDoubleLine(L.FLASK, L.YES.." ("..BuffGuide.FormatRemaining(BuffGuide.status.flask_remain)..")", 0.4,1,0.4, 0.4,1,0.4);
 	else
-		GameTooltip:AddDoubleLine(L.FLASK, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
+		tip:AddDoubleLine(L.FLASK, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
 	end
 
 
@@ -415,7 +420,7 @@ function BuffGuide.PopulateTooltip()
 	local num = GetNumGroupMembers()
 	--if (num == 0) then return; end;
 
-	GameTooltip:AddLine(" ");
+	tip:AddLine(" ");
 	
 
 	-- raid buff status
@@ -438,13 +443,13 @@ function BuffGuide.PopulateTooltip()
 			end
 
 			if (has_time) then
-				GameTooltip:AddDoubleLine(buff_name, status, 0.4,1,0.4, 0.4,1,0.4);
+				tip:AddDoubleLine(buff_name, status, 0.4,1,0.4, 0.4,1,0.4);
 			else
-				GameTooltip:AddDoubleLine(buff_name, status, 0.4,1,0.4, 1,1,0.4);
+				tip:AddDoubleLine(buff_name, status, 0.4,1,0.4, 1,1,0.4);
 			end
 
 		else
-			GameTooltip:AddDoubleLine(buff_name, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
+			tip:AddDoubleLine(buff_name, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
 
 			local k2, v2;
 			for k2, v2 in pairs(BuffGuide.buffs[k].buffs) do
@@ -453,7 +458,7 @@ function BuffGuide.PopulateTooltip()
 					-- flag for hiding a buff
 				else
 					local name = BuffGuide.GetSpellName(v2[1]);
-					GameTooltip:AddLine("    "..name.." - "..v2[2]);
+					tip:AddLine("    "..name.." - "..v2[2]);
 				end
 			end		
 		end
@@ -522,6 +527,10 @@ function BuffGuide.PeriodicCheck()
 	if (BuffGuide.showing_tooltip) then
 		BuffGuide.ShowTooltip();
 	end
+
+
+	ldb_feed.text = BuffGuide.status.buff_num.."/8";
+	ldb_feed.icon = [[Interface\Icons\spell_magic_greaterblessingofkings]];
 end
 
 function BuffGuide.GetSpellName(id)
@@ -552,6 +561,22 @@ function BuffGuide.FormatRemaining(t)
 	local m =  math.floor(t / (60));
 	return string.format(L.TIME_M, m);
 end
+
+-- ##################################################################
+
+function ldb_feed:OnTooltipShow()
+	BuffGuide.PopulateTooltip(self)
+	self:AddLine(" ");
+	self:AddLine(L.TIP_CLICK);
+end
+
+function ldb_feed:OnClick(aButton)
+	if (aButton == "LeftButton") then
+		--BuffGuide.Toggle();
+	end
+end
+
+-- ##################################################################
 
 
 BuffGuide.EventFrame = CreateFrame("Frame");

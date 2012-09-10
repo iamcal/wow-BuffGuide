@@ -2,6 +2,8 @@
 BuffGuideLocales = {};
 BuffGuideLocales["enUS"] = {
 
+	ADDON_NAME	= "BuffGuide",
+
 	RAID_BUFFS	= "Raid Buffs",
 	FOOD_BUFF	= "Food Buff",
 	FLASK		= "Flask",
@@ -10,6 +12,8 @@ BuffGuideLocales["enUS"] = {
 
 	-- this next string is required to make flasks work
 	FLASK_OF	= "Flask of",
+
+	TIP_CLICK = "|cff7fff7fClick|r to toggle the BuffGuide window.",
 
 	TIME_S		= "%ss",
 	TIME_M		= "%sm",
