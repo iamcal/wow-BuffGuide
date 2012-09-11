@@ -50,6 +50,7 @@ BuffGuideLocales["frFR"] = {
 	FROM_DRUID_BAL	= "Druide Équilibre",
 	FROM_DRUID_FER	= "Druide Gardien/Farouche",
 	FROM_SPRIEST	= "Prêtre Ombre",
+	FROM_MONK_WW	= "Moine Marche-vent",
 
 	FROM_SHALE	= "Chasseur MB (Araignée de schiste)",
 	FROM_SILITHID	= "Chasseur MB (Silithide)",
