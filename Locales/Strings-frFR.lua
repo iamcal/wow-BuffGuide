@@ -54,14 +54,15 @@ BuffGuideLocales["frFR"] = {
 	FROM_SHALE	= "Chasseur MB (Araignée de schiste)",
 	FROM_SILITHID	= "Chasseur MB (Silithide)",
 	FROM_WSTRIDER	= "Chasseur MB (Trotteur Aquatique)",
+	FROM_DEVILSAUR	= "Chasseur MB (Diablosaure)",
+	FROM_QUILEN	= "Chasseur MB (Quilen)",
+	FROM_SPIRIT	= "Chasseur MB (Esprit de bête)",
+
 	FROM_HYENA	= "Chasseur (Hyène)",
 	FROM_SERPENT	= "Chasseur (Serpent)",
 	FROM_HYDRA	= "Chasseur (Hydre)",
 	FROM_WOLF	= "Chasseur (Loup)",
-	FROM_DEVILSAUR	= "Chasseur (Diablosaure)",
-	FROM_QUILEN	= "Chasseur (Quilen)",
 	FROM_CAT	= "Chasseur (Chat)",
-	FROM_SPIRIT	= "Chasseur (Esprit de bête)",
 
         SLASH_COMMAND	= "/buffguide",
         SLASH_HELP	= "Commandes BuffGuide :",

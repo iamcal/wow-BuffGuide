@@ -56,14 +56,15 @@ BuffGuideLocales["enUS"] = {
 	FROM_SHALE	= "BM Hunter (Shale Spider)",
 	FROM_SILITHID	= "BM Hunter (Silithid)",
 	FROM_WSTRIDER	= "BM Hunter (Waterstrider)",
+	FROM_DEVILSAUR	= "BM Hunter (Devilsaur)",
+	FROM_QUILEN	= "BM Hunter (Quilen)",
+	FROM_SPIRIT	= "BM Hunter (Spirit Beast)",
+
 	FROM_HYENA	= "Hunter (Hyena)",
 	FROM_SERPENT	= "Hunter (Serpent)",
 	FROM_HYDRA	= "Hunter (Hydra)",
 	FROM_WOLF	= "Hunter (Wolf)",
-	FROM_DEVILSAUR	= "Hunter (Devilsaur)",
-	FROM_QUILEN	= "Hunter (Quilen)",
 	FROM_CAT	= "Hunter (Cat)",
-	FROM_SPIRIT	= "Hunter (Spirit Beast)",
 
 
 	SLASH_COMMAND	= "/buffguide",
