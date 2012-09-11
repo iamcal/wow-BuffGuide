@@ -7,5 +7,5 @@ It shows the 8 raid buffs (and where to get them if you're missing them), along 
 ![Status Tooltip](http://media-curse.cursecdn.com/attachments/74/87/a7360e3f0d5a9014220fcd2f574d8b77.png)
 
 * French translation by VDV/Thierry
-* Chinese translation by laxgenius
+* Traditional Chinese translation by laxgenius
 
