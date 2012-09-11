@@ -12,7 +12,7 @@ BuffGuideLocales["frFR"] = {
 	-- this next string is required to make flasks work
 	FLASK_OF	= "Flacon de",
 
-	TIP_CLICK = "|cff7fff7fClick|r to toggle the BuffGuide window.",
+	TIP_CLICK = "|cff7fff7fCliquez|r pour activer la fenêtre de BuffGuide.",
 
 	LDB_NO_FOOD		= "No food",
 	LDB_NO_FLASK		= "No flask",
@@ -63,19 +63,24 @@ BuffGuideLocales["frFR"] = {
 	FROM_CAT	= "Chasseur (Chat)",
 	FROM_SPIRIT	= "Chasseur (Esprit de bête)",
 
-	SLASH_COMMAND	= "/buffguide",
-	SLASH_HELP = "BuffGuide commands:",
+        SLASH_COMMAND	= "/buffguide",
+        SLASH_HELP	= "Commandes BuffGuide :",
 
-	SLASH_SHOW	= "show",
-	SLASH_HIDE	= "hide",
-	SLASH_TOGGLE	= "toggle",
-	SLASH_RESET	= "reset",
+	-- Even for french users, slash commands could stay in English (shorter/easier).
+	-- A good trade-off would be to translate everything but "reset" as
+	-- typing "réinitialiser" will annoy users (and reset is perfectly
+	-- understood by 99% french wow players ^^)
 
-	SLASH_SHOW_HELP = "Show frame",
-	SLASH_HIDE_HELP = "Hide frame",
-	SLASH_TOGGLE_HELP = "Toggle frame",
-	SLASH_RESET_HELP = "Reset frame position and size",
+        SLASH_SHOW	= "afficher",
+        SLASH_HIDE	= "masquer",
+        SLASH_TOGGLE	= "activer",
+        SLASH_RESET	= "reset", -------"réinitialiser",
 
-	MENU_HIDE	= "Hide frame",
-	MENU_HIDE_TIP	= "BuffGuide has been hidden. Type \"%s\" to show it again.",
+        SLASH_SHOW_HELP	= "Afficher la fenêtre",
+        SLASH_HIDE_HELP	= "Masquer la fenêtre",
+        SLASH_TOGGLE_HELP = "Activer la fenêtre",
+        SLASH_RESET_HELP = "Réinitialiser la position et la taille de la fenêtre",
+
+        MENU_HIDE	= "Masquer la fenêtre",
+        MENU_HIDE_TIP	= "BuffGuide est masqué. Tapez \"%s\" pour l'afficher à nouveau.",
 };
