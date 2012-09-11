@@ -51,6 +51,7 @@ BuffGuideLocales["enUS"] = {
 	FROM_DRUID_BAL	= "Balance Druid",
 	FROM_DRUID_FER	= "Guardian/Feral Druid",
 	FROM_SPRIEST	= "Shadow Priest",
+	FROM_MONK_WW	= "Windwalker Monk",
 
 	FROM_SHALE	= "BM Hunter (Shale Spider)",
 	FROM_SILITHID	= "BM Hunter (Silithid)",
