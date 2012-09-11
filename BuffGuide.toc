@@ -12,5 +12,6 @@ Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
 
 Locales\Strings-enUS.lua
 Locales\Strings-frFR.lua
+Locales\Strings-zhTW.lua
 
 BuffGuide.lua
