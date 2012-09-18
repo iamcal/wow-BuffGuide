@@ -21,3 +21,6 @@
 
 1.4
  * Fixed Mind Quickening shadow priest buff
+
+1.5
+ * Added another buff ID for Spirit Beast Blessing (thanks to wenyicchen)

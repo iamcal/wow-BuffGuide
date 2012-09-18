@@ -101,6 +101,7 @@ BuffGuide.buffs = {
 			{116956,	L.FROM_SHAMAN},		-- Grace of Air
 			{93435,		L.FROM_CAT},		-- Roar of Courage
 			{128997,	L.FROM_SPIRIT},		-- Spirit Beast Blessing
+			{127830,	L.FROM_SPIRIT, true},	-- Spirit Beast Blessing (again)
 		},
 	},
 };
