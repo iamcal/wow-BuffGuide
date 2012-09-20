@@ -27,3 +27,6 @@
 
 1.6
  * Corrected spell ID for Moonkin Aura (thanks to wenyicchen)
+
+1.7
+ * Corrected spell ID for Legacy of the Emperor (thanks to laxgenius)
