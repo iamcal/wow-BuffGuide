@@ -30,3 +30,8 @@
 
 1.7
  * Corrected spell ID for Legacy of the Emperor (thanks to laxgenius)
+
+1.8
+ * Added right-click menu for LDB feed
+ * Added option to hide buff provider classes (suggested by Akgis)
+ * Added option (in LDB feed) to hide food/flask status from label (suggested by Akgis)

@@ -30,6 +30,10 @@ BuffGuide.default_options = {
 	-- sizing
 	frameW = 70,
 	frameH = 50,
+
+	-- options
+	hideSuggestions = false,
+	hideFoodFlaskLDB = false,
 };
 
 BuffGuide.buffs = {
@@ -329,7 +333,7 @@ end
 
 function BuffGuide.OnClick(self, aButton)
 	if (aButton == "RightButton") then
-		BuffGuide.ShowMenu();
+		BuffGuide.ShowMenu(true);
 	end
 end
 
@@ -487,16 +491,18 @@ function BuffGuide.PopulateTooltip(tip)
 		else
 			tip:AddDoubleLine(buff_name, L.MISSING, 1,0.4,0.4, 1,0.4,0.4);
 
-			local k2, v2;
-			for k2, v2 in pairs(BuffGuide.buffs[k].buffs) do
+			if (not _G.BuffGuidePrefs.hideSuggestions) then
+				local k2, v2;
+				for k2, v2 in pairs(BuffGuide.buffs[k].buffs) do
 
-				if (v2[3]) then
-					-- flag for hiding a buff
-				else
-					local name = BuffGuide.GetSpellName(v2[1]);
-					tip:AddLine("    "..name.." - "..v2[2]);
+					if (v2[3]) then
+						-- flag for hiding a buff
+					else
+						local name = BuffGuide.GetSpellName(v2[1]);
+						tip:AddLine("    "..name.." - "..v2[2]);
+					end
 				end
-			end		
+			end
 		end
 	end
 end
@@ -560,28 +566,37 @@ function BuffGuide.PeriodicCheck()
 		end
 	end
 
-	if (BuffGuide.showing_tooltip) then
-		BuffGuide.ShowTooltip();
-	end
+	BuffGuide.RefreshTip();
+	BuffGuide.UpdateLDB();
+end
 
+function BuffGuide.UpdateLDB()
 
-	-- update LDB status text
 	local ldb_status = BuffGuide.status.buff_num.."/8";
-	if (BuffGuide.status.has_food) then
-		if (BuffGuide.status.has_flask) then
+
+	if (not _G.BuffGuidePrefs.hideFoodFlaskLDB) then
+		if (BuffGuide.status.has_food) then
+			if (BuffGuide.status.has_flask) then
+			else
+				ldb_status = ldb_status .. " ("..L.LDB_NO_FLASK..")";
+			end
 		else
-			ldb_status = ldb_status .. " ("..L.LDB_NO_FLASK..")";
-		end
-	else
-		if (BuffGuide.status.has_flask) then
-			ldb_status = ldb_status .. " ("..L.LDB_NO_FOOD..")";
-		else
-			ldb_status = ldb_status .. " ("..L.LDB_NO_FOOD_FLASK..")";
+			if (BuffGuide.status.has_flask) then
+				ldb_status = ldb_status .. " ("..L.LDB_NO_FOOD..")";
+			else
+				ldb_status = ldb_status .. " ("..L.LDB_NO_FOOD_FLASK..")";
+			end
 		end
 	end
 
 	ldb_feed.text = ldb_status;
 	ldb_feed.icon = [[Interface\Icons\spell_magic_greaterblessingofkings]];
+end
+
+function BuffGuide.RefreshTip()
+	if (BuffGuide.showing_tooltip) then
+		BuffGuide.ShowTooltip();
+	end
 end
 
 function BuffGuide.GetSpellName(id)
@@ -613,7 +628,7 @@ function BuffGuide.FormatRemaining(t)
 	return string.format(L.TIME_M, m);
 end
 
-function BuffGuide.ShowMenu()
+function BuffGuide.ShowMenu(fromFrame)
 
 	local menu_frame = CreateFrame("Frame", "menuFrame", UIParent, "UIDropDownMenuTemplate");
 
@@ -622,13 +637,44 @@ function BuffGuide.ShowMenu()
 	table.insert(menuList, {
 		text = L.MENU_HIDE,
 		func = function()
-			BuffGuide.Hide();
-			print(string.format(L.MENU_HIDE_TIP, L.SLASH_COMMAND.." "..L.SLASH_SHOW));
+			if (_G.BuffGuidePrefs.hide) then
+				BuffGuide.Show();
+			else
+				BuffGuide.Hide();
+				if (fromFrame) then
+					print(string.format(L.MENU_HIDE_TIP, L.SLASH_COMMAND.." "..L.SLASH_SHOW));
+				end
+			end
 		end,
 		isTitle = false,
-		checked = false,
+		checked = _G.BuffGuidePrefs.hide,
 		disabled = false,
 	});
+
+	table.insert(menuList, {
+		text = L.MENU_CLASSES,
+		func = function()
+			_G.BuffGuidePrefs.hideSuggestions = not _G.BuffGuidePrefs.hideSuggestions;
+			BuffGuide.RefreshTip();
+		end,
+		isTitle = false,
+		checked = _G.BuffGuidePrefs.hideSuggestions,
+		disabled = false,
+	});
+
+	if (not fromFrame) then
+		table.insert(menuList, {
+			text = L.MENU_FOOD_FLASK,
+			func = function()
+				_G.BuffGuidePrefs.hideFoodFlaskLDB = not _G.BuffGuidePrefs.hideFoodFlaskLDB;
+				BuffGuide.UpdateLDB();
+			end,
+			isTitle = false,
+			checked = _G.BuffGuidePrefs.hideFoodFlaskLDB,
+			disabled = false,
+		});
+	end
+
 
 	EasyMenu(menuList, menu_frame, "cursor", 0 , 0, "MENU");
 end
@@ -644,6 +690,9 @@ end
 function ldb_feed:OnClick(aButton)
 	if (aButton == "LeftButton") then
 		BuffGuide.Toggle();
+	end
+	if (aButton == "RightButton") then
+		BuffGuide.ShowMenu(false);
 	end
 end
 

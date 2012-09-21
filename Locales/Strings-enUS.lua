@@ -82,4 +82,6 @@ BuffGuideLocales["enUS"] = {
 
 	MENU_HIDE	= "Hide frame",
 	MENU_HIDE_TIP	= "BuffGuide has been hidden. Type \"%s\" to show it again.",
+	MENU_CLASSES	= "Hide provider classes",
+	MENU_FOOD_FLASK	= "Hide food/flask status",
 };
