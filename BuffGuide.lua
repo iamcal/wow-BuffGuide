@@ -89,6 +89,7 @@ BuffGuide.buffs = {
 	crit = {
 		buffs = {
 			{17007,		L.FROM_DRUID_FER},	-- Leader of the Pack
+			{24932,		L.FROM_DRUID_FER},	-- Leader of the Pack
 			{1459,		L.FROM_MAGE},		-- Arcane Brilliance
 			{61316,		L.FROM_MAGE,	true},	-- Dalaran Brilliance
 			{116781,	L.FROM_MONK_WW},	-- Legacy of the White Tiger

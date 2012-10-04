@@ -35,3 +35,6 @@
  * Added right-click menu for LDB feed
  * Added option to hide buff provider classes (suggested by Akgis)
  * Added option (in LDB feed) to hide food/flask status from label (suggested by Akgis)
+
+1.9
+ * Additional spell ID for Leader of the Pack (thanks to laxgenius)

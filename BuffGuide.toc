@@ -2,7 +2,7 @@
 ## Title : BuffGuide
 ## Notes: Show which Riad buffs you're missing
 ## Author: Cal Henderson (Bees on Hyjal-US)
-## Version: 1.8
+## Version: 1.9
 ## Dependencies: 
 ## SavedVariablesPerCharacter: BuffGuidePrefs
 
