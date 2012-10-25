@@ -41,6 +41,7 @@ BuffGuide.buffs = {
 		buffs = {
 			{1126, 		L.FROM_DRUID},		-- Mark of the Wild
 			{117666,	L.FROM_MONK},		-- Legacy of the Emperor
+			{117667,	L.FROM_MONK, true},	-- Legacy of the Emperor
 			{20217,		L.FROM_PALADIN},	-- Blessing of Kings
 			{90363,		L.FROM_SHALE},		-- Embrace of the Shale Spider
 		},

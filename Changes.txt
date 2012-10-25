@@ -41,3 +41,4 @@
 
 1.10
  * Hide incorrect second LotP suggestion
+ * Additional spell ID for Legacy of the Emperor
