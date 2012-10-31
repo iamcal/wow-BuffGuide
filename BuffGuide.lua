@@ -614,7 +614,7 @@ end
 function BuffGuide.FormatRemaining(t)
 
 	if (t < 90) then
-		return string.format(L.TIME_S, t);
+		return string.format(L.TIME_S, math.floor(t));
 	end
 
 	if (t > 60 * 90) then
