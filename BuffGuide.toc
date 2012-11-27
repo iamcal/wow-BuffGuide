@@ -1,8 +1,8 @@
-## Interface: 50001
+## Interface: 50100
 ## Title : BuffGuide
 ## Notes: Show which Riad buffs you're missing
 ## Author: Cal Henderson (Bees on Hyjal-US)
-## Version: 1.10
+## Version: 1.11
 ## Dependencies: 
 ## SavedVariablesPerCharacter: BuffGuidePrefs
 

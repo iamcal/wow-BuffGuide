@@ -43,3 +43,6 @@
  * Hide incorrect second LotP suggestion
  * Additional spell ID for Legacy of the Emperor
  * Round seconds remaining when a buff has less than 90s (instead of showing 5.9999999s as it does now)
+
+1.11
+ * Upgrade to interface 50100
