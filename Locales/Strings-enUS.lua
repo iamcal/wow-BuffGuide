@@ -65,6 +65,7 @@ BuffGuideLocales["enUS"] = {
 	FROM_HYDRA	= "Hunter (Hydra)",
 	FROM_WOLF	= "Hunter (Wolf)",
 	FROM_CAT	= "Hunter (Cat)",
+	FROM_SPOREBAT	= "Hunter (Sporebat)",
 
 
 	SLASH_COMMAND	= "/buffguide",

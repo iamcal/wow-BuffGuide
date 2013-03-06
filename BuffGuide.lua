@@ -84,6 +84,7 @@ BuffGuide.buffs = {
 			{24907,		L.FROM_DRUID_BAL},	-- Moonkin Aura
 			{49868,		L.FROM_SPRIEST},	-- Mind Quickening
 			{51470,		L.FROM_SHAM_ELE},	-- Elemental Oath
+			{135678,	L.FROM_SPOREBAT},	-- Energizing Spores
 		},
 	},
 	crit = {

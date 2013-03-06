@@ -49,3 +49,5 @@
 
 1.12
  * Upgrade to interface 50200
+ * Updated Warlock buffs - no more Blood Pact from Imps, but Dark Intent gives +Stam
+ * Added Sporebat pet for Spell Haste
