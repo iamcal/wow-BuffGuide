@@ -46,3 +46,6 @@
 
 1.11
  * Upgrade to interface 50100
+
+1.12
+ * Upgrade to interface 50200
