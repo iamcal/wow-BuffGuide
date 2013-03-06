@@ -49,8 +49,7 @@ BuffGuide.buffs = {
 	stamina = {
 		buffs = {
 			{21562,		L.FROM_PRIEST},		-- Power Word: Fortitude
-			{6307,		L.FROM_IMP},		-- Blood Pact
-			{103127,	L.FROM_IMP, 	true},	-- Imp: Blood Pact
+			{109773,	L.FROM_WARLOCK},	-- Dark Intent
 			{469,		L.FROM_WARRIOR},	-- Commanding Shout
 			{90364,		L.FROM_SILITHID},	-- Qiraji Fortitude
 		},
