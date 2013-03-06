@@ -605,6 +605,7 @@ function BuffGuide.GetSpellName(id)
 
 	if (not BuffGuide.spell_cache[id]) then
 		local name = GetSpellInfo(id);
+		if (not name) then name = "Unknown #"..id; end
 		BuffGuide.spell_cache[id] = name;
 	end
 
